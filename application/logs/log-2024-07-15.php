@@ -1,0 +1,55 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2024-07-15 02:09:07 --> 404 Page Not Found: Sitemapxml/index
+ERROR - 2024-07-15 02:09:07 --> 404 Page Not Found: Well-known/security.txt
+ERROR - 2024-07-15 03:28:04 --> 404 Page Not Found: Env/index
+ERROR - 2024-07-15 03:44:33 --> 404 Page Not Found: Env/index
+ERROR - 2024-07-15 04:05:03 --> 404 Page Not Found: Sitemapxml/index
+ERROR - 2024-07-15 04:05:05 --> 404 Page Not Found: Configjson/index
+ERROR - 2024-07-15 04:13:36 --> 404 Page Not Found: Owa/auth
+ERROR - 2024-07-15 05:19:50 --> Severity: Notice --> Undefined index: HTTP_HOST /var/www/html/vhost2/pnbpn/application/config/config.php 23
+ERROR - 2024-07-15 05:19:50 --> 404 Page Not Found: Sdk/index
+ERROR - 2024-07-15 05:19:50 --> 404 Page Not Found: Odinhttpcall1720996099/index
+ERROR - 2024-07-15 05:19:51 --> 404 Page Not Found: HNAP1/index
+ERROR - 2024-07-15 05:19:51 --> 404 Page Not Found: Evox/about
+ERROR - 2024-07-15 05:19:52 --> Severity: Notice --> Undefined index: HTTP_HOST /var/www/html/vhost2/pnbpn/application/config/config.php 23
+ERROR - 2024-07-15 06:12:22 --> 404 Page Not Found: Env/index
+ERROR - 2024-07-15 06:12:23 --> 404 Page Not Found: Vendor/phpunit
+ERROR - 2024-07-15 06:36:05 --> 404 Page Not Found: Actuator/health
+ERROR - 2024-07-15 09:20:04 --> 404 Page Not Found: Admin/filemanager
+ERROR - 2024-07-15 09:51:48 --> 404 Page Not Found: Geoserver/web
+ERROR - 2024-07-15 09:59:05 --> 404 Page Not Found: Sitemapxml/index
+ERROR - 2024-07-15 09:59:07 --> 404 Page Not Found: Configjson/index
+ERROR - 2024-07-15 09:59:07 --> 404 Page Not Found: Sitemapxml/index
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: Wp-includes/wlwmanifest.xml
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: Xmlrpcphp/index
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: Blog/wp-includes
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: Web/wp-includes
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: Wordpress/wp-includes
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: Website/wp-includes
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: Wp/wp-includes
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: News/wp-includes
+ERROR - 2024-07-15 10:51:54 --> 404 Page Not Found: 2018/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: 2019/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: Shop/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: Wp1/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: Test/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: Media/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: Wp2/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: Site/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: Cms/wp-includes
+ERROR - 2024-07-15 10:51:55 --> 404 Page Not Found: Sito/wp-includes
+ERROR - 2024-07-15 12:21:56 --> 404 Page Not Found: Sitemapxml/index
+ERROR - 2024-07-15 15:08:14 --> 404 Page Not Found: Actuator/gateway
+ERROR - 2024-07-15 15:15:20 --> 404 Page Not Found: Phpmyadmin/index
+ERROR - 2024-07-15 16:15:09 --> 404 Page Not Found: Geoserver/web
+ERROR - 2024-07-15 17:37:10 --> 404 Page Not Found: Git/config
+ERROR - 2024-07-15 19:28:50 --> 404 Page Not Found: Env/index
+ERROR - 2024-07-15 19:29:07 --> 404 Page Not Found: Env/index
+ERROR - 2024-07-15 19:34:26 --> 404 Page Not Found: Env/index
+ERROR - 2024-07-15 21:11:16 --> 404 Page Not Found: Ecp/Current
+ERROR - 2024-07-15 21:17:46 --> 404 Page Not Found: Git/config
+ERROR - 2024-07-15 21:27:08 --> 404 Page Not Found: Phpmyadmin/index
+ERROR - 2024-07-15 21:32:15 --> 404 Page Not Found: HNAP1/index
+ERROR - 2024-07-15 23:09:31 --> 404 Page Not Found: Git/config
+ERROR - 2024-07-15 23:33:58 --> 404 Page Not Found: Actuator/gateway

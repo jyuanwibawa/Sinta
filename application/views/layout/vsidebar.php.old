@@ -1,0 +1,227 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-warning">
+  <!-- Brand Logo -->
+  <a href="<?= base_url() ?>/index3.html" class="brand-link bg-dark text-center">
+    <img src="<?= base_url('assets/dist/img/logobpn.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8;float: inherit;">
+    <img src="<?= base_url('assets/dist/img/logopn.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8;float: inherit;">
+    <div class="brand-text font-weight-light wrap">APDULANTAH</div>
+  </a>
+
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-5">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-flat text-sm" data-widget="treeview" role="menu" data-accordion="false">
+
+        <li class="nav-item">
+          <?php $base = "Dashboard"; ?>
+          <a href="<?= base_url($base) ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              <?= $base ?>
+            </p>
+          </a>
+        </li>
+
+        <!-- <li class="nav-item">
+          <?php $base = "Pertanahan"; ?>
+          <a href="<?= base_url($base) ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon fas fa-globe"></i>
+            <p>
+              <?= $base ?>
+            </p>
+          </a>
+        </li> -->
+
+        <!-- Kasus -->
+        <?php
+        if ($this->session->userdata('instansi') == "Kantah Palembang") {
+          ?>
+          <li class="nav-item <?php if ($title == 'Semua Kasus' or $title == 'Perdata' or $title == 'Pidana' or $title == 'PTUN' or $title == 'Pengaduan Masyarakat') {
+                                  echo 'menu-open';
+                                } ?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-circle"></i>
+              <p>
+                Kasus
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <?php $base = "Semua Kasus"; ?>
+                <a href="<?= base_url('kasus/') ?>" class="nav-link 
+          <?php if ($title == $base) {
+              echo 'active';
+            } ?>">
+                  <i class="nav-icon far fa-edit"></i>
+                  <p>
+                    <?= $base ?>
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <?php $base = "Pengaduan Masyarakat"; ?>
+                <a href="<?= base_url('kasus/dumas') ?>" class="nav-link 
+          <?php if ($title == $base) {
+              echo 'active';
+            } ?>">
+                  <i class="nav-icon far fa-edit"></i>
+                  <p>
+                    <?= $base ?>
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <?php $base = "Pidana"; ?>
+                <a href="<?= base_url('kasus/pidana') ?>" class="nav-link 
+          <?php if ($title == $base) {
+              echo 'active';
+            } ?>">
+                  <i class="nav-icon far fa-edit"></i>
+                  <p>
+                    <?= $base ?>
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <?php $base = "Perdata"; ?>
+                <a href="<?= base_url('kasus/perdata') ?>" class="nav-link 
+          <?php if ($title == $base) {
+              echo 'active';
+            } ?>">
+                  <i class="nav-icon far fa-edit"></i>
+                  <p>
+                    <?= $base ?>
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <?php $base = "PTUN"; ?>
+                <a href="<?= base_url('kasus/ptun') ?>" class="nav-link 
+          <?php if ($title == $base) {
+              echo 'active';
+            } ?>">
+                  <i class="nav-icon far fa-edit"></i>
+                  <p>
+                    <?= $base ?>
+                  </p>
+                </a>
+              </li>
+
+
+            </ul>
+          </li>
+        <?php } ?>
+
+        <!-- Pengadilan Negeri -->
+        <li class="nav-item <?php if ($title == 'Semua Data PN' or $title == 'Pemeriksaan Setempat' or $title == 'Konstatering' or $title == 'Sita' or $title == 'Penerbitan SKPT' or $title == 'Panggilan Sidang' or $title == 'Lain-lain') {
+                              echo 'menu-open';
+                            } ?>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-gavel"></i>
+            <p>
+              Pengadilan Negeri
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+              <?php $base = "Semua Data PN"; ?>
+              <a href="<?= base_url('pn') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+                <i class="nav-icon far fa-edit"></i>
+                <p>
+                  <?= $base ?>
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <?php $base = "Panggilan Sidang"; ?>
+              <a href="<?= base_url('pn/sidang') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+                <i class="nav-icon far fa-edit"></i>
+                <p>
+                  <?= $base ?>
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <?php $base = "Pemeriksaan Setempat"; ?>
+              <a href="<?= base_url('pn/pemeriksaan') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+                <i class="nav-icon far fa-edit"></i>
+                <p>
+                  <?= $base ?>
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <?php $base = "Konstatering"; ?>
+              <a href="<?= base_url('pn/konstatering') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+                <i class="nav-icon far fa-edit"></i>
+                <p>
+                  <?= $base ?>
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <?php $base = "Sita"; ?>
+              <a href="<?= base_url('pn/sita') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+                <i class="nav-icon far fa-edit"></i>
+                <p>
+                  <?= $base ?>
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <?php $base = "Lain-lain"; ?>
+              <a href="<?= base_url('pn/lainnya') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+                <i class="nav-icon far fa-edit"></i>
+                <p>
+                  <?= $base ?>
+                </p>
+              </a>
+            </li>
+
+
+          </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

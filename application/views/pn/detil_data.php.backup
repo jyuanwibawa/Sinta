@@ -1,0 +1,616 @@
+<!-- Main content -->
+<?php $enc_id = encrypt_url($show->id_kasus); ?>
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <!-- <div class="card-title">
+                <h4>Data Umum</h4>
+            </div> -->
+            <?php //if ($this->session->userdata('user_id') == "0") { ?>
+                <div class="card-tools">
+                    <?php if (is_null($show->link)) { ?>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#linksipp">
+                                Tambah URL SIPP WEB
+                            </button>
+                    <?php } else { ?>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" data-toggle="modal" data-target="#edit_linksipp">Edit URL SIPP WEB</a>
+                            </div>
+                    <?php } ?>
+                    <?php //if ($this->session->userdata('user_id') == '0' or $this->session->userdata('user_id') == $show->user_id) { ?>
+                        <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editdataumum">
+                            Edit Data Umum
+                        </button> -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus">
+                            Hapus Data
+                        </button>
+                    <?php //} ?>
+                </div>
+            <?php //} ?>
+        </div>
+
+        <div class="card-body">
+            <?php
+            if (validation_errors() || $this->session->flashdata('errors')) {
+                ?>
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-ban"></i> Peringatan!</h5>
+                    <?= validation_errors(); ?>
+                    <?= $this->session->flashdata('errors'); ?>
+                </div>
+            <?php } else if ($this->session->flashdata('success')) { ?>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-check"></i> Berhasil!</h5>
+                    <?= $this->session->flashdata('success'); ?>
+                </div>
+            <?php } ?>
+            <div class="card card-navy card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="detil-tab" data-toggle="" href="#" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="true">DETIL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="sippweb-tab" data-toggle="" href="#" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">SIPP WEB</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="kodok-tab" data-toggle="" href="#" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">SINERGI DOKUMEN</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-four-tabContent">
+
+                        <div class="tab-pane fade show active" id="detil" role="tabpanel" aria-labelledby="detil-tab">
+                            <table class="table table-bordered table-hover table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td class="bg-light" style="width: 200px">Tanggal Surat</td>
+                                        <td><?= tgl_bayu($show->tanggalsurat) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Nomor Surat</td>
+                                        <td><?= $show->nosurat ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Jenis Kegiatan</td>
+                                        <td><?= $show->jeniskegiatan ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Pihak Penggugat</td>
+                                        <td>
+                                            <pre class="p-0" style="word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;"><?= $show->penggugat ?></pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Pihak Tergugat</td>
+                                        <td>
+                                            <pre class="p-0" style="word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;"><?= $show->tergugat ?></pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Pihak Turut Tergugat</td>
+                                        <td>
+                                            <pre class="p-0" style="word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;"><?= $show->turuttergugat ?></pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Perihal</td>
+                                        <td><?= $show->perihal ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Objek</td>
+                                        <td><?= $show->objek ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Keterangan Objek</td>
+                                        <td>
+                                            <pre class="p-0 text-justify" style="word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;"><?= $show->keterangan ?></pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Uraian</td>
+                                        <td>
+                                            <pre class="p-0 text-justify" style="word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;"><?= $show->uraian ?></pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light">Dokumen</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lihatfile">
+                                                Lihat Dokumen
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td class="bg-light" style="width: 200px">Integrasi SIPP WEB</td>
+                                        <td>
+                                            <?php if (is_null($show->link)) { ?>
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#linksipp">
+                                                    Tambah URL SIPP WEB
+                                                </button>
+                                            <?php } else { ?>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-primary" href="<?= $show->link ?>" target="_blank" rel="noopener noreferrer">Link SIPP WEB</a>
+                                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                    <div class="dropdown-menu" role="menu">
+                                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_linksipp">Edit Link</a>
+                                                    </div>
+                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#edit_linksipp">Edit URL SIPP WEB</a>
+                                                </div>
+                                            <?php } ?>
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show active" id="sippweb" role="tabpanel" aria-labelledby="sippweb-tab">
+                            <?php if ($show->link!=''){ ?>
+                                <object type="text/html" data="<?php echo $show->link;?>" width="100%" height="800px" style="overflow:auto;border:5px ridge blue"></object>
+
+                            <?php }else{ ?>
+                                <span class='color:red'>URL Detil Perkara dari SIPP WEB belum ditambahkan di TAB Detil.</span>
+                            <?php } ?>
+                        </div>
+
+                        <div class="tab-pane fade show active" id="kodok" role="tabpanel" aria-labelledby="kodok-tab">
+                            <div class="row" style="width:100%">
+                            <div style="width:20%"><button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahseksi">
+                                Tambah Dokumen
+                            </button></div>
+                            <div style="width:80%;text-align:right">
+                            Data pada SINERGI DOKUMEN ini dapat ditambahkan sebanyak yang diperlukan.
+                            </div>
+                            </div>
+                            <table class="table table-striped table-hover">
+                                <thead class="thead-secondary">
+                                    <tr>
+                                        <th>Dokumen</th><th>Judul Dokumen</th><th>Keterangan</th><th class="text-right">Tanggal Pengiriman<br>Nama Pengirim</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($get_permintaan as $lihat) :
+                                        $enkrip_permintaan = encrypt_url($lihat->id_permintaan);
+                                        ?>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-info" id="lihatfile_kodok" data-toggle="modal" data-target="#lihatfile_kodok" >Lihat Dokumen #<?= $no ?></button></td></td>
+                                            <td>
+                                                <!-- <a href="<?= base_url('Permintaan_data/show/' . $enkrip_permintaan) ?>"> -->
+                                                <!-- Dokumen #<?= $no++ ?>
+                                                <br>-->
+                                                <?= $lihat->judul ?>
+                                    </td><td><?= $lihat->keterangan_dok ?>
+                                                <!-- </a> -->
+                                            </td>
+                                            <td class="text-right"><?= indonesian_date($lihat->created_at) ?><br><?= $lihat->nama ?></td>
+
+                                        </tr>
+                                    <?php 
+                                    // $no++;
+                                    endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="card-body mt-n4">
+
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahseksi">
+                Permintaan Data
+            </button>
+            <div class="modal fade" id="tambahseksi">
+                <div class="modal-dialog" style="margin: 4.75rem auto;">
+                    <?= form_open_multipart("pn/store_permintaan/" . $enc_id) ?>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title mt-n3 mb-n4 ml-n2">
+                                <div class="btn btn-app bg-danger mt-n3">
+                                    <i class="fas fa-inbox"></i>
+                                </div>
+                                Permintaan Data
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="has-float-label">
+                                    <input type="text" class="form-control form-floating" name="judul" placeholder=" " required>
+                                    <span>Judul</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="has-float-label">
+                                    <textarea class="form-control form-floating" rows="5" name="keterangan_pn" placeholder=" " required></textarea>
+                                    <span>Keterangan</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="has-float-label ">
+                                    <input type="file" class="form-control form-floating" name="lampiran_pn" placeholder=" " required>
+                                    <span class="mb-2">Lampiran</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                        </div>
+                    </div>
+                    </form> -->
+                    <!-- /.modal-content -->
+                <!-- </div> -->
+                <!-- /.modal-dialog -->
+            <!-- </div> -->
+            <!-- /.modal -->
+            <!-- <table class="table table-striped">
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($get_permintaan as $lihat) :
+                        $enkrip_permintaan = encrypt_url($lihat->id_permintaan);
+                        ?>
+                        <tr>
+                            <td><b><a href="<?= base_url('Permintaan_data/show/' . $enkrip_permintaan) ?>">#<?= $no++ ?><br><?= $lihat->judul ?></a></b></td>
+                            <td class="text-right"><?= tgl_bayu($lihat->created_at) ?><br><?= $lihat->nama ?></td>
+
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table> -->
+
+        <!-- </div> -->
+    <!-- </div> -->
+    <!-- /.card-body -->
+    <!-- </div> -->
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+
+
+
+
+<div class="modal fade" id="lihatfile">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mr-auto">
+                    Lampiran <?= $show->nosurat ?>
+                </h4>
+                <a href="<?= base_url('resources/lampiran/sinergi_data/surat/' . $show->lampiran) ?>" target="_blank" class="btn btn-success m-1">Unduh</a>
+                <!-- <button type="submit" class="btn btn-info m-1">Edit</button> -->
+                <!-- <button type="submit" class="btn btn-danger m-1">Hapus</button> -->
+            </div>
+            <div class="modal-body">
+                <object data="<?= base_url('resources/lampiran/sinergi_data/surat/' . $show->lampiran) ?>" type="application/pdf" width="100%" height="1000"></object>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="hapus">
+    <div class="modal-dialog">
+        <form action="<?= base_url('pn/delete/' . $enc_id) ?>" method="post">
+            <div class="modal-content bg-danger">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title">Hapus Semua Data?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Anda akan menghapus seluruh informasi pada data ini(lampiran, kajian dan rekomendasi)!</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-secondary">Hapus</button>
+                </div>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="editdataumum">
+    <div class="modal-dialog modal-xl" style="margin: 4.75rem auto;">
+        <?= form_open_multipart("pn/update/" . $enc_id) ?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mt-n3 mb-n4 ml-n2">
+                    <div class="btn btn-app bg-danger mt-n3">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    Edit Data <?= $show->nosurat ?>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-12">
+                        <div class="row">
+                            <div id="reservationdate" data-target-input="nearest" class="form-group col-4">
+                                <label class="has-float-label">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" data-toggle="datetimepicker" name="tanggalsurat" placeholder=" " value="<?= $show->tanggalsurat ?>" />
+                                    <span>Tanggal Surat</span>
+                                </label>
+                            </div>
+                            <div class="form-group col-8">
+                                <label class="has-float-label">
+                                    <input type="text" class="form-control form-floating" name="nosurat" placeholder=" " value="<?= $show->nosurat ?>">
+                                    <span>No. Surat</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <select class="form-control custom-select" name="jeniskasus">
+                                    <option value="<?= $show->id_jeniskasus ?>" selected><?= $show->jeniskasus ?></option>
+                                    <option value="#" disabled>==========</option>
+                                    <?php foreach ($get_list_jeniskasus as $ljkasus) : ?>
+                                        <option value="<?= $ljkasus->id_jeniskasus ?>"><?= $ljkasus->jeniskasus ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <span>Kasus</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <input type="text" class="form-control form-floating" name="instansi" placeholder=" " value="<?= $show->instansi ?>">
+                                <span>Instansi Terkait</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <textarea class="form-control form-floating" rows="3" name="pihak" placeholder=" "><?= $show->pihak ?></textarea>
+                                <span>Para Pihak</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <input type="text" class="form-control form-floating" name="perihal" placeholder=" " value="<?= $show->perihal ?>">
+                                <span>Perihal</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <select class="form-control custom-select" name="objek">
+                                    <option value="<?= $show->id_objek ?>" selected><?= $show->objek ?></option>
+                                    <option value="#" disabled>==========</option>
+                                    <?php foreach ($get_list_objek as $lobjek) : ?>
+                                        <option value="<?= $lobjek->id_objek ?>"><?= $lobjek->objek ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <span>Objek</span>
+                            </label>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label class="has-float-label">
+                                <input type="text" class="form-control form-floating" name="kota" placeholder=" " value="<?= $show->kota ?>">
+                                <span>Kota</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <input type="text" class="form-control form-floating" name="kelurahan" placeholder=" " value="<?= $show->kelurahan ?>">
+                                <span>Kelurahan</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <input type="text" class="form-control form-floating" name="nohak" placeholder=" " value="<?= $show->nohak ?>">
+                                <span>No. Hak</span>
+                            </label>
+                        </div> -->
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <textarea class="form-control form-floating" rows="3" name="keterangan" placeholder=" "><?= $show->keterangan ?></textarea>
+                                <span>Keterangan Objek</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="has-float-label">
+                                <textarea class="form-control form-floating" rows="4" name="uraian" placeholder=" "><?= $show->uraian ?></textarea>
+                                <span>Uraian</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-info">Perbarui</button>
+            </div>
+        </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="linksipp">
+    <div class="modal-dialog" style="margin: 4.75rem auto;">
+        <?= form_open_multipart("pn/update_link/" . $enc_id) ?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mt-n3 mb-n4 ml-n2">
+                    <div class="btn btn-app bg-danger mt-n3">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    Tambah URL SIPP WEB
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="has-float-label">
+                        <input type="text" class="form-control form-floating" name="linksipp" placeholder=" ">
+                        <span>URL SIPP WEB</span>
+                    </label>
+                    <code>* Wajib berawalan http:// atau https://</code>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-info">Perbarui</button>
+            </div>
+        </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="edit_linksipp">
+    <div class="modal-dialog" style="margin: 4.75rem auto;">
+        <?= form_open_multipart("pn/update_link/" . $enc_id) ?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mt-n3 mb-n4 ml-n2">
+                    <div class="btn btn-app bg-danger mt-n3">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    Edit URL SIPP WEB
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="has-float-label">
+                        <input type="text" class="form-control form-floating" name="linksipp" placeholder=" " value="<?= $show->link ?>">
+                        <span>URL SIPP WEB</span>
+                    </label>
+                    <code>* Wajib berawalan http:// atau https://</code>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-info">Perbarui</button>
+            </div>
+        </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+            <div class="modal fade" id="tambahseksi">
+                <div class="modal-dialog" style="margin: 4.75rem auto;">
+                    <?= form_open_multipart("pn/store_permintaan/" . $enc_id) ?>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title mt-n3 mb-n4 ml-n2">
+                                <div class="btn btn-app bg-danger mt-n3">
+                                    <i class="fas fa-inbox"></i>
+                                </div>
+                                Tambah Dokumen
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="has-float-label">
+                                    <input type="text" class="form-control form-floating" name="judul" placeholder=" " required>
+                                    <span>Judul</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="has-float-label">
+                                    <textarea class="form-control form-floating" rows="5" name="keterangan_pn" placeholder=" " required></textarea>
+                                    <span>Keterangan</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="has-float-label ">
+                                    <input type="file" class="form-control form-floating" accept="application/pdf" name="lampiran_pn" placeholder=" " required>
+                                    <span class="mb-2">Lampiran</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                        </div>
+                    </div>
+                    </form>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+<div class="modal fade" id="lihatfile_kodok">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mr-auto">
+                    Lampirans <?= $show->nosurat ?>
+                </h4>
+                <!-- <a href="<?= base_url('resources/lampiran/sinergi_data/lampiran/' . $show->lampiran_dok) ?>" target="_blank" class="btn btn-success m-1">Unduh</a> -->
+                <!-- <button type="submit" class="btn btn-info m-1">Edit</button> -->
+                <!-- <button type="submit" class="btn btn-danger m-1">Hapus</button> -->
+            </div>
+            <div class="modal-body">
+                <!-- <object data="<?= base_url('resources/lampiran/sinergi_data/lampiran/' . $show->lampiran_dok) ?>" type="application/pdf" width="100%" height="1000"></object> -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#detil').show();
+    $('#sippweb').hide();
+    $('#kodok').hide();
+});
+$('#sippweb-tab').click(function(){
+    // alert("halo");
+    $('#detil').hide();
+    $('#sippweb').show();
+    $('#kodok').hide();
+    $('#detil-tab').removeClass('active');
+    $('#sippweb-tab').addClass('active');
+    $('#kodok-tab').removeClass('active');
+});
+$('#detil-tab').click(function(){
+    // alert("halo");
+    $('#detil').show();
+    $('#sippweb').hide();
+    $('#kodok').hide();
+    $('#detil-tab').addClass('active');
+    $('#sippweb-tab').removeClass('active');
+    $('#kodok-tab').removeClass('active');
+});
+$('#kodok-tab').click(function(){
+    // alert("halo");
+    $('#detil').hide();
+    $('#sippweb').hide();
+    $('#kodok').show();
+    $('#detil-tab').removeClass('active');
+    $('#sippweb-tab').removeClass('active');
+    $('#kodok-tab').addClass('active');
+});
+// $('#lihatfile_kodok').click(function(){
+//     // alert("halo");
+// });
+</script>

@@ -1,0 +1,222 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2024-08-22 02:50:56 --> Severity: Notice --> Undefined variable: satker /var/www/html/sinta/application/views/view_login.php 64
+ERROR - 2024-08-22 02:50:56 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/view_login.php 64
+ERROR - 2024-08-22 02:51:07 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:07 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:07 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:07 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:07 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:07 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:07 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:07 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:09 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:09 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:10 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:10 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:11 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:11 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:11 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:11 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:11 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:11 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:11 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:11 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:12 --> Severity: Notice --> Undefined property: stdClass::$link /var/www/html/sinta/application/views/pb/detil_data.php 144
+ERROR - 2024-08-22 02:51:12 --> Severity: Notice --> Undefined property: stdClass::$link /var/www/html/sinta/application/views/pb/detil_data.php 507
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:15 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:15 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:16 --> Severity: Notice --> Undefined property: stdClass::$link /var/www/html/sinta/application/views/pb/detil_data.php 144
+ERROR - 2024-08-22 02:51:16 --> Severity: Notice --> Undefined property: stdClass::$link /var/www/html/sinta/application/views/pb/detil_data.php 507
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 02:51:25 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:51:25 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 02:55:06 --> Severity: Notice --> Undefined property: stdClass::$link /var/www/html/sinta/application/views/pb/detil_data.php 144
+ERROR - 2024-08-22 02:55:06 --> Severity: Notice --> Undefined property: stdClass::$link /var/www/html/sinta/application/views/pb/detil_data.php 507
+ERROR - 2024-08-22 10:29:11 --> Severity: Notice --> Undefined variable: satker /var/www/html/sinta/application/views/view_login.php 64
+ERROR - 2024-08-22 10:29:11 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/view_login.php 64
+ERROR - 2024-08-22 10:33:56 --> Severity: Notice --> Undefined variable: satker /var/www/html/sinta/application/views/view_login.php 64
+ERROR - 2024-08-22 10:33:56 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/view_login.php 64
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:22 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 10:46:22 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 10:46:45 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 10:46:45 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:08:04 --> Severity: Notice --> Undefined variable: all /var/www/html/sinta/application/views/view_dashboard.php 102
+ERROR - 2024-08-22 11:08:04 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/view_dashboard.php 102
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:10:23 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:10:23 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:14:52 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:52 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:52 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:52 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:52 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:52 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:52 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:14:52 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:14:53 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:14:53 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:24 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:22:24 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:22:31 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:31 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:31 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:31 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:31 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:22:31 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:22:31 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:22:31 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:23:18 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:23:18 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:23:18 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:23:18 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:23:18 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 11:23:18 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 11:23:18 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:23:18 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 11:36:52 --> Severity: Notice --> Undefined variable: data_cerai /var/www/html/sinta/application/views/view_dashboard.php 113
+ERROR - 2024-08-22 11:36:52 --> Severity: Notice --> Undefined variable: data_pembatalan_cerai /var/www/html/sinta/application/views/view_dashboard.php 114
+ERROR - 2024-08-22 11:36:52 --> Severity: Notice --> Undefined variable: data_ijin_jual /var/www/html/sinta/application/views/view_dashboard.php 119
+ERROR - 2024-08-22 11:36:52 --> Severity: Notice --> Undefined variable: data_akta_kelahiran /var/www/html/sinta/application/views/view_dashboard.php 120
+ERROR - 2024-08-22 11:36:52 --> Severity: Notice --> Undefined variable: data_narkotika /var/www/html/sinta/application/views/view_dashboard.php 125
+ERROR - 2024-08-22 11:36:52 --> Severity: Notice --> Undefined variable: data_perlindungan_anak /var/www/html/sinta/application/views/view_dashboard.php 126
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$jeniskasus /var/www/html/sinta/application/views/pb/regis_data.php 71
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined property: stdClass::$pihak /var/www/html/sinta/application/views/pb/regis_data.php 86
+ERROR - 2024-08-22 12:25:13 --> Severity: Notice --> Undefined variable: get_list_sjperkara /var/www/html/sinta/application/views/pb/regis_data.php 215
+ERROR - 2024-08-22 12:25:13 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/sinta/application/views/pb/regis_data.php 215
