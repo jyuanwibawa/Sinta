@@ -72,3 +72,20 @@ ERROR - 2026-01-01 03:04:01 --> Query error: Unknown column 'u_id' in 'order cla
 ERROR - 2026-01-01 03:19:05 --> 404 Page Not Found: Register/index
 ERROR - 2026-01-01 03:31:23 --> Query error: Unknown column 'u_id' in 'where clause' - Invalid query: UPDATE user SET waktu_daftar=now() WHERE u_id = '1'
 ERROR - 2026-01-01 03:35:21 --> 404 Page Not Found: Loginuuser/index
+ERROR - 2026-01-01 04:00:53 --> 404 Page Not Found: Admin/ruangan
+ERROR - 2026-01-01 04:00:53 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:00:53 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:00:53 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:00:53 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:00:53 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:00:53 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:02:26 --> 404 Page Not Found: Admin/ruangan
+ERROR - 2026-01-01 04:02:26 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:02:26 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:02:26 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:02:26 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:02:26 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:02:26 --> 404 Page Not Found: Admin/assets
+ERROR - 2026-01-01 04:06:21 --> 404 Page Not Found: Ruangan/index
+ERROR - 2026-01-01 04:45:03 --> 404 Page Not Found: Ruangan/index
+ERROR - 2026-01-01 04:45:49 --> 404 Page Not Found: Ruangan/index

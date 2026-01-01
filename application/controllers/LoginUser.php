@@ -41,6 +41,13 @@ class LoginUser extends CI_Controller
         if ($cek->num_rows() > 0) {
             $row = $cek->row();
             
+            // Cek apakah user memiliki role 'user' (bukan admin)
+            // Database menggunakan angka: 0 = admin, 1 = user
+            if ($row->role != '1') {
+                $this->session->set_flashdata('error', 'Akses ditolak! Halaman ini hanya untuk role user.');
+                redirect('loginuser');
+            }
+            
             // Cek apakah user aktif
             if ($row->aktivasi != 1) {
                 $this->session->set_flashdata('error', 'Akun Anda tidak aktif. Silakan hubungi administrator.');

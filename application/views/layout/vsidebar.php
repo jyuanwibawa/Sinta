@@ -34,18 +34,7 @@
         </li>
 
         <!-- Menu Admin Ruangan -->
-        <li class="nav-item">
-          <?php $base = "Admin Ruangan"; ?>
-          <a href="<?= base_url('admin/ruangan') ?>" class="nav-link 
-          <?php if ($title == $base) {
-            echo 'active';
-          } ?>">
-            <i class="nav-icon fas fa-door-open"></i>
-            <p>
-              <?= $base ?>
-            </p>
-          </a>
-        </li>
+        
 
         <!-- <li class="nav-item">
           <?php $base = "Pertanahan"; ?>

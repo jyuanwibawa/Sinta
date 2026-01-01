@@ -14,10 +14,24 @@ class DashboardUser extends CI_Controller
         if (!$this->session->userdata('user_logged_in')) {
             redirect('loginuser');
         }
+        
+        // Cek apakah user memiliki role 'user'
+        // Database menggunakan angka: 0 = admin, 1 = user
+        if ($this->session->userdata('role') != '1') {
+            $this->session->sess_destroy();
+            redirect('loginuser');
+        }
     }
 
     public function index()
     {
+        // Double check role untuk keamanan
+        // Database menggunakan angka: 0 = admin, 1 = user
+        if ($this->session->userdata('role') != '1') {
+            $this->session->sess_destroy();
+            redirect('loginuser');
+        }
+        
         $data = [
             'title' => 'Dashboard User',
             'page' => 'dashboard_user/index',
