@@ -69,3 +69,6 @@ ERROR - 2026-01-01 03:02:57 --> Query error: Unknown column 'u.u_id' in 'field l
         ORDER BY u.u_id ASC
 ERROR - 2026-01-01 03:03:49 --> Query error: Unknown column 'u_id' in 'order clause' - Invalid query: SELECT * FROM user ORDER BY u_id ASC
 ERROR - 2026-01-01 03:04:01 --> Query error: Unknown column 'u_id' in 'order clause' - Invalid query: SELECT * FROM user ORDER BY u_id ASC
+ERROR - 2026-01-01 03:19:05 --> 404 Page Not Found: Register/index
+ERROR - 2026-01-01 03:31:23 --> Query error: Unknown column 'u_id' in 'where clause' - Invalid query: UPDATE user SET waktu_daftar=now() WHERE u_id = '1'
+ERROR - 2026-01-01 03:35:21 --> 404 Page Not Found: Loginuuser/index

@@ -35,13 +35,13 @@ class Model_user extends CI_Model
 
     function get($id)
     {
-        return $this->db->query("SELECT nama, s.`seksi`, b.`jkajian` as bagian, aktivasi, email, u_id, role_text as role, images, u.seksi as id_seksi, u.bagian as id_bagian, u_paswd AS pass, u_pin AS pin
+        return $this->db->query("SELECT nama, s.`seksi`, b.`jkajian` as bagian, aktivasi, email, user_id, role_text as role, images, u.seksi as id_seksi, u.bagian as id_bagian, u_paswd AS pass, u_pin AS pin
         FROM user AS u
         JOIN `seksi` AS s ON
         u.`seksi` = s.`id_seksi`
         JOIN jeniskajian AS b ON
-        u.`bagian` = b.`id_jkajian` where u_id=" . $id . "
-        ORDER BY u_id ASC")->row();
+        u.`bagian` = b.`id_jkajian` where user_id=" . $id . "
+        ORDER BY user_id ASC")->row();
     }
 
     function daftar($data)
@@ -71,7 +71,7 @@ class Model_user extends CI_Model
 
     function cekId($kode)
     {
-        $this->db->where("u_id", $kode);
+        $this->db->where("user_id", $kode);
         return $this->db->get("user");
     }
 
@@ -84,7 +84,7 @@ class Model_user extends CI_Model
             foreach ($q_cek_login->result() as $qck) {
                 foreach ($q_cek_login->result() as $qad) {
                     $sess_data['logged_in'] = 'EQUALIZR sedang Login';
-                    $sess_data['u_id'] = $qad->u_id;
+                    $sess_data['user_id'] = $qad->user_id;
                     $sess_data['email'] = $qad->email;
                     $sess_data['nama'] = $qad->nama;
                     $sess_data['group'] = $qad->group;
@@ -104,7 +104,7 @@ class Model_user extends CI_Model
     function do_waktu_daftar($id)
     {
 
-        return $this->db->query("UPDATE user SET waktu_daftar=now() WHERE u_id = '$id'");
+        return $this->db->query("UPDATE user SET waktu_daftar=now() WHERE user_id = '$id'");
     }
 
     function update($id)
@@ -119,7 +119,7 @@ class Model_user extends CI_Model
             'u_pin' => encrypt_url(md5($this->input->post('pin'))),
         ];
 
-        $result = $this->db->where('u_id', $id)->update('user', $data);
+        $result = $this->db->where('user_id', $id)->update('user', $data);
         return $result;
     }
 
@@ -130,7 +130,7 @@ class Model_user extends CI_Model
 
     function hapus($kode)
     {
-        $this->db->where("u_id", $kode);
+        $this->db->where("user_id", $kode);
         $this->db->delete("user");
     }
 
