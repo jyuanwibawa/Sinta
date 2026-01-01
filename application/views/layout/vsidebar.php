@@ -216,7 +216,21 @@
         <?php
         }}
         ?>
- 
+
+        <!-- Menu Integrasi Simetri -->
+        <li class="nav-item">
+          <?php $base = "Integrasi Simetri"; ?>
+          <a href="<?= base_url('simetri') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon fas fa-users-cog"></i>
+            <p>
+              <?= $base ?>
+            </p>
+          </a>
+        </li>
+
     </nav>
     <!-- /.sidebar-menu -->
   </div>
