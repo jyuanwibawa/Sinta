@@ -30,12 +30,7 @@ class Model_user extends CI_Model
 
     function semua()
     {
-        return $this->db->query("SELECT nama, s.`seksi`, b.`jkajian` as bagian, aktivasi, email, u_id FROM user AS u
-        JOIN `seksi` AS s ON
-        u.`seksi` = s.`id_seksi`
-        JOIN jeniskajian AS b ON
-        u.`bagian` = b.`id_jkajian`
-        ORDER BY u_id ASC")->result();
+        return $this->db->query("SELECT * FROM user ORDER BY user_id ASC")->result();
     }
 
     function get($id)
