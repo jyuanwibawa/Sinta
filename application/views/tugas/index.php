@@ -19,8 +19,8 @@
         <div class="content-body">
             <div class="table-card">
                 <div class="card-header-wrapper">
-                    <a href="<?= base_url('ruangan') ?>" class="back-link">
-                        <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Ruangan
+                    <a href="<?= base_url('pengerjaan') ?>" class="back-link">
+                        <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Pengerjaan
                     </a>
 
                     <div class="header-action-row">
