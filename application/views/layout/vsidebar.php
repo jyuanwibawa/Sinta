@@ -205,6 +205,18 @@
           </a>
         </li>
         <li class="nav-item">
+          <?php $base = "Kelola Ruangan"; ?>
+          <a href="<?= base_url('ruangan') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon fas fa-building"></i>
+            <p>
+              <?= $base ?>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <?php $base = "Kelola Pengerjaan"; ?>
           <a href="<?= base_url('pengerjaan') ?>" class="nav-link 
           <?php if ($title == $base) {
