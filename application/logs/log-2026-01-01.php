@@ -89,3 +89,12 @@ ERROR - 2026-01-01 04:02:26 --> 404 Page Not Found: Admin/assets
 ERROR - 2026-01-01 04:06:21 --> 404 Page Not Found: Ruangan/index
 ERROR - 2026-01-01 04:45:03 --> 404 Page Not Found: Ruangan/index
 ERROR - 2026-01-01 04:45:49 --> 404 Page Not Found: Ruangan/index
+ERROR - 2026-01-01 05:08:03 --> 404 Page Not Found: Ruangan/index
+ERROR - 2026-01-01 05:44:21 --> 404 Page Not Found: Ruangan_minimal/index
+ERROR - 2026-01-01 05:45:48 --> 404 Page Not Found: Ruangan/tugas
+ERROR - 2026-01-01 05:45:48 --> 404 Page Not Found: Ruangan/assets
+ERROR - 2026-01-01 05:45:48 --> 404 Page Not Found: Ruangan/assets
+ERROR - 2026-01-01 05:45:48 --> 404 Page Not Found: Ruangan/assets
+ERROR - 2026-01-01 05:45:48 --> 404 Page Not Found: Ruangan/assets
+ERROR - 2026-01-01 05:45:48 --> 404 Page Not Found: Ruangan/assets
+ERROR - 2026-01-01 05:45:48 --> 404 Page Not Found: Ruangan/assets

@@ -33,22 +33,7 @@
           </a>
         </li>
 
-        <!-- Menu Admin Ruangan -->
         
-
-        <!-- <li class="nav-item">
-          <?php $base = "Pertanahan"; ?>
-          <a href="<?= base_url($base) ?>" class="nav-link 
-          <?php if ($title == $base) {
-            echo 'active';
-          } ?>">
-            <i class="nav-icon fas fa-globe"></i>
-            <p>
-              <?= $base ?>
-            </p>
-          </a>
-        </li> -->
-
         <!-- Pengadilan Negeri -->
         <!-- <li class="nav-item <?php if ($title == 'Semua Data PN' or $title == 'Pemeriksaan Setempat' or $title == 'Konstatering' or $title == 'Sita' or $title == 'Penerbitan SKPT' or $title == 'Panggilan Sidang' or $title == 'Lain-lain') {
                               echo 'menu-open';
@@ -219,6 +204,19 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <?php $base = "Kelola Ruangan"; ?>
+          <a href="<?= base_url('ruangan') ?>" class="nav-link 
+          <?php if ($title == $base) {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon fas fa-door-open"></i>
+            <p>
+              <?= $base ?>
+            </p>
+          </a>
+        </li>
+
 
     </nav>
     <!-- /.sidebar-menu -->
