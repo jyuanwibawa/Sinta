@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('assets') ?>/css/parameter-sistem.css">
     <link rel="stylesheet" href="<?= base_url('assets') ?>/css/tugas-ruangan.css">
+    <link rel="stylesheet" href="<?= base_url('assets') ?>/css/qr-code.css">
 </head>
 <body>
     <!-- Sidebar will be loaded here by JavaScript -->
@@ -39,6 +40,7 @@
                                 <th>Luas (m²)</th>
                                 <th>Kapasitas</th>
                                 <th>Status</th>
+                                <th>QR Code</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -57,6 +59,20 @@
                                             ?>
                                             <span class="pill-priority <?= $status_class ?>"><?= $status_text ?></span>
                                         </td>
+                                        <td class="text-center">
+                                            <div class="qr-code-container">
+                                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=<?= urlencode($ruangan['id_ruangan']) ?>" 
+                                                     alt="QR Code untuk <?= htmlspecialchars($ruangan['nama_ruangan']) ?>" 
+                                                     class="qr-code-img"
+                                                     onclick="showQRCodeModal(<?= $ruangan['id_ruangan'] ?>, '<?= htmlspecialchars($ruangan['nama_ruangan']) ?>')"
+                                                     style="cursor: pointer; border-radius: 4px;">
+                                                <div class="qr-code-actions">
+                                                    <button class="btn-icon btn-sm" onclick="downloadQRCode(<?= $ruangan['id_ruangan'] ?>, '<?= htmlspecialchars($ruangan['nama_ruangan']) ?>')" title="Download QR Code">
+                                                        <i class="fa-solid fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>
                                             <div class="action-cell">
                                                 <button class="btn-icon btn-edit" onclick="editRuangan(<?= $ruangan['id_ruangan'] ?>)">
@@ -71,7 +87,7 @@
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+                                    <td colspan="7" style="text-align: center; padding: 40px; color: #666;">
                                         <i class="fa-solid fa-inbox" style="font-size: 48px; margin-bottom: 15px; display: block;"></i>
                                         <p>Belum ada data ruangan</p>
                                         <p style="font-size: 14px; margin-top: 10px;">
@@ -240,6 +256,33 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal QR Code -->
+    <div id="qrCodeModal" class="modal">
+        <div class="modal-content qr-modal">
+            <div class="modal-header">
+                <h4>QR Code Ruangan</h4>
+                <span class="close-modal" onclick="tutupModal('qrCodeModal')">&times;</span>
+            </div>
+            <div class="modal-body text-center">
+                <div id="qrCodeContent">
+                    <!-- QR Code akan dimuat di sini -->
+                </div>
+                <div class="qr-info">
+                    <h5 id="qrRoomName"></h5>
+                    <p class="text-muted">ID: <span id="qrRoomId"></span></p>
+                </div>
+                <div class="qr-actions">
+                    <button class="btn btn-primary" onclick="downloadCurrentQRCode()">
+                        <i class="fa-solid fa-download"></i> Download QR Code
+                    </button>
+                    <button class="btn btn-secondary" onclick="printCurrentQRCode()">
+                        <i class="fa-solid fa-print"></i> Cetak QR Code
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -537,6 +580,81 @@
                 document.querySelectorAll('.modal.show').forEach(modal => {
                     modal.classList.remove('show');
                 });
+            }
+        }
+
+        // QR Code Functions
+        let currentQRData = null;
+
+        function showQRCodeModal(roomId, roomName) {
+            currentQRData = { id: roomId, name: roomName };
+            
+            // Set room info
+            document.getElementById('qrRoomName').textContent = roomName;
+            document.getElementById('qrRoomId').textContent = roomId;
+            
+            // Generate QR Code
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(roomId)}`;
+            document.getElementById('qrCodeContent').innerHTML = `
+                <img src="${qrCodeUrl}" alt="QR Code untuk ${roomName}" 
+                     style="border: 2px solid #ddd; border-radius: 8px; padding: 10px; background: white;">
+            `;
+            
+            // Show modal
+            document.getElementById('qrCodeModal').classList.add('show');
+        }
+
+        function downloadQRCode(roomId, roomName) {
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(roomId)}`;
+            const link = document.createElement('a');
+            link.href = qrCodeUrl;
+            link.download = `QR_Code_${roomName.replace(/\s+/g, '_')}_${roomId}.png`;
+            link.click();
+        }
+
+        function downloadCurrentQRCode() {
+            if (currentQRData) {
+                downloadQRCode(currentQRData.id, currentQRData.name);
+            }
+        }
+
+        function printCurrentQRCode() {
+            if (currentQRData) {
+                const printWindow = window.open('', '_blank');
+                const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(currentQRData.id)}`;
+                
+                printWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>QR Code - ${currentQRData.name}</title>
+                            <style>
+                                body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+                                .qr-container { margin: 20px auto; max-width: 400px; }
+                                .qr-img { border: 2px solid #333; padding: 20px; background: white; }
+                                .room-info { margin-top: 20px; }
+                                .room-name { font-size: 18px; font-weight: bold; margin: 10px 0; }
+                                .room-id { color: #666; }
+                                @media print { body { margin: 0; } }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="qr-container">
+                                <img src="${qrCodeUrl}" alt="QR Code" class="qr-img">
+                                <div class="room-info">
+                                    <div class="room-name">${currentQRData.name}</div>
+                                    <div class="room-id">ID: ${currentQRData.id}</div>
+                                </div>
+                            </div>
+                            <script>
+                                window.onload = function() {
+                                    window.print();
+                                    window.close();
+                                }
+                            <\/script>
+                        </body>
+                    <\/html>
+                `);
+                printWindow.document.close();
             }
         }
     </script>

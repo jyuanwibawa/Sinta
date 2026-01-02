@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SINTA - Parameter Sistem</title>
+    <title>SINTA - Kelola Pengerjaan</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('assets') ?>/css/parameter-sistem.css">
@@ -13,9 +13,9 @@
         <div class="content-body">
             <div class="table-card">
                 <div class="card-header-row">
-                    <h4 class="card-title">Daftar Ruangan</h4>
+                    <h4 class="card-title">Daftar Pengerjaan</h4>
                     <button class="btn-add" onclick="tambahRuangan()">
-                        <i class="fas fa-plus"></i> Tambah Ruangan
+                        <i class="fas fa-plus"></i> Tambah Pengerjaan
                     </button>
                 </div>
 
@@ -148,23 +148,30 @@
     <div id="modalTambahRuangan" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Tambah Ruangan Baru</h3>
+                <h3>Tambah Pengerjaan Baru</h3>
                 <button type="button" class="close-btn" onclick="tutupModal('modalTambahRuangan')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <form id="formTambahRuangan" class="modal-form">
                 <div class="form-group">
-                    <label for="namaRuangan">Nama Ruangan</label>
-                    <input type="text" id="namaRuangan" name="namaRuangan" placeholder="Masukkan nama ruangan" required>
-                </div>
-                <div class="form-group">
-                    <label for="lantai">Lantai</label>
-                    <input type="text" id="lantai" name="lantai" placeholder="Contoh: Lantai 1" required>
-                </div>
-                <div class="form-group">
-                    <label for="luas">Luas (m²)</label>
-                    <input type="number" id="luas" name="luas" placeholder="Masukkan luas ruangan" required>
+                    <label for="namaRuangan">Pilih Ruangan</label>
+                    <select id="namaRuangan" name="namaRuangan" required>
+                        <option value="">Pilih Ruangan</option>
+                        <option value="Ruang Sidang A">Ruang Sidang A</option>
+                        <option value="Ruang Sidang B">Ruang Sidang B</option>
+                        <option value="Ruang Tunggu">Ruang Tunggu</option>
+                        <option value="Ruang Rapat">Ruang Rapat</option>
+                        <option value="Ruang Arsip">Ruang Arsip</option>
+                        <option value="Break Room">Break Room</option>
+                        <option value="Ruang Konsultasi">Ruang Konsultasi</option>
+                        <option value="Ruang Mediasi">Ruang Mediasi</option>
+                        <option value="Ruang Sekretariat">Ruang Sekretariat</option>
+                        <option value="Ruang Perpustakaan">Ruang Perpustakaan</option>
+                        <option value="Toilet Lantai 1">Toilet Lantai 1</option>
+                        <option value="Toilet Lantai 2">Toilet Lantai 2</option>
+                        <option value="Toilet Lantai 3">Toilet Lantai 3</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="admin">Administrator</label>
@@ -195,7 +202,7 @@
     <div id="modalEditRuangan" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Edit Ruangan</h3>
+                <h3>Edit Pengerjaan</h3>
                 <button type="button" class="close-btn" onclick="tutupModal('modalEditRuangan')">
                     <i class="fas fa-times"></i>
                 </button>
@@ -203,16 +210,23 @@
             <form id="formEditRuangan" class="modal-form">
                 <input type="hidden" id="editId" name="id">
                 <div class="form-group">
-                    <label for="editNamaRuangan">Nama Ruangan</label>
-                    <input type="text" id="editNamaRuangan" name="namaRuangan" placeholder="Masukkan nama ruangan" required>
-                </div>
-                <div class="form-group">
-                    <label for="editLantai">Lantai</label>
-                    <input type="text" id="editLantai" name="lantai" placeholder="Contoh: Lantai 1" required>
-                </div>
-                <div class="form-group">
-                    <label for="editLuas">Luas (m²)</label>
-                    <input type="number" id="editLuas" name="luas" placeholder="Masukkan luas ruangan" required>
+                    <label for="editNamaRuangan">Pilih Ruangan</label>
+                    <select id="editNamaRuangan" name="namaRuangan" required>
+                        <option value="">Pilih Ruangan</option>
+                        <option value="Ruang Sidang A">Ruang Sidang A</option>
+                        <option value="Ruang Sidang B">Ruang Sidang B</option>
+                        <option value="Ruang Tunggu">Ruang Tunggu</option>
+                        <option value="Ruang Rapat">Ruang Rapat</option>
+                        <option value="Ruang Arsip">Ruang Arsip</option>
+                        <option value="Break Room">Break Room</option>
+                        <option value="Ruang Konsultasi">Ruang Konsultasi</option>
+                        <option value="Ruang Mediasi">Ruang Mediasi</option>
+                        <option value="Ruang Sekretariat">Ruang Sekretariat</option>
+                        <option value="Ruang Perpustakaan">Ruang Perpustakaan</option>
+                        <option value="Toilet Lantai 1">Toilet Lantai 1</option>
+                        <option value="Toilet Lantai 2">Toilet Lantai 2</option>
+                        <option value="Toilet Lantai 3">Toilet Lantai 3</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="editAdministrator">Administrator</label>
@@ -272,8 +286,6 @@
             // Populate edit form with row data
             document.getElementById('editId').value = '1'; // Set appropriate ID
             document.getElementById('editNamaRuangan').value = cells[0].textContent;
-            document.getElementById('editLantai').value = cells[1].textContent;
-            document.getElementById('editLuas').value = cells[2].textContent;
             
             // Show modal
             document.getElementById('modalEditRuangan').style.display = 'flex';
