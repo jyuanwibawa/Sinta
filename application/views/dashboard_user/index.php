@@ -24,15 +24,6 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
-        
-        /* Make Integrasi SIMETRI card clickable */
-        .task-card:first-child {
-            cursor: pointer;
-        }
-        
-        .task-card:first-child:hover {
-            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.15);
-        }
     </style>
 </head>
 <body>
@@ -57,7 +48,7 @@
             <!-- Card Menunggu -->
             <div class="status-card menunggu">
                 <div class="status-info">
-                    <span class="status-count">4</span>
+                    <span class="status-count"><?= isset($pengerjaan_stats['pending']) ? $pengerjaan_stats['pending'] : 0 ?></span>
                     <span class="status-title">Menunggu</span>
                 </div>
             </div>
@@ -65,7 +56,7 @@
             <!-- Card Dikerjakan -->
             <div class="status-card dikerjakan">
                 <div class="status-info">
-                    <span class="status-count">0</span>
+                    <span class="status-count"><?= isset($pengerjaan_stats['proses']) ? $pengerjaan_stats['proses'] : 0 ?></span>
                     <span class="status-title">Dikerjakan</span>
                 </div>
             </div>
@@ -73,7 +64,7 @@
             <!-- Card Selesai -->
             <div class="status-card selesai">
                 <div class="status-info">
-                    <span class="status-count">1</span>
+                    <span class="status-count"><?= isset($pengerjaan_stats['selesai']) ? $pengerjaan_stats['selesai'] : 0 ?></span>
                     <span class="status-title">Selesai</span>
                 </div>
             </div>
@@ -82,10 +73,17 @@
         <div class="progress-box">
             <div class="progress-header">
                 <span>Progress Hari Ini</span>
-                <span><i class="fa-solid fa-arrow-trend-up"></i> 20%</span>
+                <span><i class="fa-solid fa-arrow-trend-up"></i> 
+                    <?php 
+                    $total = isset($pengerjaan_stats['total']) ? $pengerjaan_stats['total'] : 0;
+                    $selesai = isset($pengerjaan_stats['selesai']) ? $pengerjaan_stats['selesai'] : 0;
+                    $progress = $total > 0 ? round(($selesai / $total) * 100) : 0;
+                    echo $progress . '%';
+                    ?>
+                </span>
             </div>
             <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
+                <div class="progress-bar-fill" style="width: <?= $progress ?>%"></div>
             </div>
         </div>
     </header>
@@ -93,96 +91,83 @@
     <main class="main-content">
         <div class="section-header">
             <h2 class="section-title">Daftar Tugas Hari Ini</h2>
-            <span class="task-count">5 tugas</span>
+            <span class="task-count"><?= isset($pengerjaan_stats['total']) ? $pengerjaan_stats['total'] : 0 ?> tugas</span>
         </div>
 
-        <div class="task-card">
-            <div class="card-body">
-                <div class="icon-box green">
-                    <i class="fa-regular fa-circle-check"></i>
+        <?php if(isset($pengerjaan_list) && !empty($pengerjaan_list)): ?>
+            <?php foreach($pengerjaan_list as $item): ?>
+                <?php 
+                // Parse tugas data
+                $tugas_data = json_decode($item->tugas, true);
+                $first_tugas = is_array($tugas_data) && !empty($tugas_data) ? $tugas_data[0] : $item->tugas;
+                
+                // Determine status class and icon
+                $status_class = '';
+                $status_icon = '';
+                $status_text = '';
+                
+                switch($item->status) {
+                    case 'selesai':
+                        $status_class = 'done';
+                        $status_icon = 'fa-check';
+                        $status_text = 'Selesai';
+                        break;
+                    case 'proses':
+                        $status_class = 'working';
+                        $status_icon = 'fa-spinner';
+                        $status_text = 'Dikerjakan';
+                        break;
+                    default:
+                        $status_class = 'pending';
+                        $status_icon = 'fa-circle-notch';
+                        $status_text = 'Menunggu';
+                }
+                
+                // Determine icon box color
+                $icon_color = $item->status == 'selesai' ? 'green' : 'yellow';
+                
+                // Format created time
+                $time = date('H:i', strtotime($item->created_at));
+                ?>
+                
+                <div class="task-card" onclick="window.location.href='<?= base_url('detailtugas/detail') ?>'">
+                    <?php if($item->prioritas == 'tinggi'): ?>
+                    <div class="badge-urgent">
+                        <i class="fa-solid fa-clock"></i> Urgent
+                    </div>
+                    <?php endif; ?>
+                    
+                    <div class="card-body">
+                        <div class="icon-box <?= $icon_color ?>">
+                            <i class="fa-regular <?= $item->status == 'selesai' ? 'fa-circle-check' : 'fa-clock' ?>"></i>
+                        </div>
+                        <div class="task-info">
+                            <h3><?= htmlspecialchars($first_tugas) ?></h3>
+                            <p class="task-meta"><?= htmlspecialchars($item->nama_ruangan) ?> • <?= ucfirst($item->prioritas) ?></p>
+                            <p class="task-desc">
+                                <?php 
+                                if(is_array($tugas_data) && count($tugas_data) > 1) {
+                                    echo count($tugas_data) . ' tugas termasuk ' . htmlspecialchars($first_tugas);
+                                } else {
+                                    echo htmlspecialchars($first_tugas);
+                                }
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="time"><i class="fa-regular fa-clock"></i> <?= $time ?></div>
+                        <span class="status-pill <?= $status_class ?>"><i class="fa-solid <?= $status_icon ?>"></i> <?= $status_text ?></span>
+                    </div>
                 </div>
-                <div class="task-info">
-                    <h3>Integrasi SIMETRI</h3>
-                    <p class="task-meta">Dashboard • Sistem</p>
-                    <p class="task-desc">Sinkronisasi data pegawai dengan sistem SIMETRI.</p>
-                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="empty-state" style="text-align: center; padding: 60px 20px; color: #666;">
+                <i class="fas fa-clipboard-list" style="font-size: 48px; margin-bottom: 20px; color: #ccc;"></i>
+                <h3 style="margin-bottom: 10px;">Belum ada tugas</h3>
+                <p>Anda belum memiliki pengerjaan yang ditugaskan.</p>
             </div>
-            <div class="card-footer">
-                <div class="time"><i class="fa-regular fa-clock"></i> 08:00</div>
-                <span class="status-pill done"><i class="fa-solid fa-check"></i> Selesai</span>
-            </div>
-        </div>
-
-        <div class="task-card">
-            <div class="card-body">
-                <div class="icon-box yellow">
-                    <i class="fa-regular fa-clock"></i>
-                </div>
-                <div class="task-info">
-                    <h3>Update Profil User</h3>
-                    <p class="task-meta">User Management • Profile</p>
-                    <p class="task-desc">Perbarui informasi profil dan pengaturan akun pengguna.</p>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="time"><i class="fa-regular fa-clock"></i> 09:00</div>
-                <span class="status-pill pending"><i class="fa-solid fa-circle-notch"></i> Menunggu</span>
-            </div>
-        </div>
-
-        <div class="task-card">
-            <div class="badge-urgent">
-                <i class="fa-solid fa-clock"></i> Urgent
-            </div>
-            <div class="card-body">
-                <div class="icon-box yellow">
-                    <i class="fa-regular fa-clock"></i>
-                </div>
-                <div class="task-info">
-                    <h3>Backup Database</h3>
-                    <p class="task-meta">System • Database</p>
-                    <p class="task-desc">Lakukan backup database harian untuk keamanan data.</p>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="time"><i class="fa-regular fa-clock"></i> 07:30</div>
-                <span class="status-pill pending"><i class="fa-solid fa-circle-notch"></i> Menunggu</span>
-            </div>
-        </div>
-
-        <div class="task-card">
-            <div class="card-body">
-                <div class="icon-box yellow">
-                    <i class="fa-regular fa-clock"></i>
-                </div>
-                <div class="task-info">
-                    <h3>Generate Laporan</h3>
-                    <p class="task-meta">Reports • Analytics</p>
-                    <p class="task-desc">Buat laporan bulanan untuk manajemen sistem.</p>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="time"><i class="fa-regular fa-clock"></i> 10:00</div>
-                <span class="status-pill pending"><i class="fa-solid fa-circle-notch"></i> Menunggu</span>
-            </div>
-        </div>
-
-        <div class="task-card">
-            <div class="card-body">
-                <div class="icon-box yellow">
-                    <i class="fa-regular fa-clock"></i>
-                </div>
-                <div class="task-info">
-                    <h3>System Maintenance</h3>
-                    <p class="task-meta">System • Maintenance</p>
-                    <p class="task-desc">Periksa dan optimasi performa sistem.</p>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="time"><i class="fa-regular fa-clock"></i> 14:00</div>
-                <span class="status-pill pending"><i class="fa-solid fa-circle-notch"></i> Menunggu</span>
-            </div>
-        </div>
+        <?php endif; ?>
     </main>
 
     <script>
@@ -199,24 +184,13 @@
             // This would require more complex logic to update specific times
         }
 
-        // Add click handlers for task cards
-        document.querySelectorAll('.task-card').forEach((card, index) => {
-            card.addEventListener('click', function() {
-                // Handle task card click
-                if (index === 0) {
-                    // First card (Integrasi SIMETRI) - redirect to simetri page
-                    window.location.href = '<?= base_url('simetri') ?>';
-                } else {
-                    console.log('Task card clicked:', index);
-                }
-            });
-        });
-
         // Handle status card clicks
         document.querySelectorAll('.status-card').forEach((card, index) => {
             card.addEventListener('click', function() {
-                console.log('Status card clicked:', index);
-                // Add functionality for status cards
+                // Redirect to pengerjaan page with status filter
+                const statusMap = ['pending', 'proses', 'selesai'];
+                const status = statusMap[index];
+                window.location.href = `<?= base_url('pengerjaan') ?>?status=${status}`;
             });
         });
 

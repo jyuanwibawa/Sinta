@@ -71,6 +71,50 @@ class Model_pengerjaan extends CI_Model {
         return $this->db->delete('pengerjaan');
     }
 
+    // Get pengerjaan by user_id
+    public function get_latest_pengerjaan_by_user($user_id) {
+        $this->db->select('p.*, r.nama_ruangan, r.lantai, r.luas, u.nama as nama_user, u.user_id');
+        $this->db->from('pengerjaan p');
+        $this->db->join('ruangan r', 'p.id_ruangan = r.id_ruangan', 'left');
+        $this->db->join('user u', 'p.id_user = u.user_id', 'left');
+        $this->db->where('p.id_user', $user_id);
+        $this->db->order_by('p.created_at', 'DESC');
+        $this->db->limit(1);
+        return $this->db->get()->row();
+    }
+    
+    public function get_pengerjaan_by_user($user_id) {
+        $this->db->select('p.*, r.nama_ruangan, r.lantai, r.luas, u.nama as nama_user, u.user_id');
+        $this->db->from('pengerjaan p');
+        $this->db->join('ruangan r', 'p.id_ruangan = r.id_ruangan', 'left');
+        $this->db->join('user u', 'p.id_user = u.user_id', 'left');
+        $this->db->where('p.id_user', $user_id);
+        $this->db->order_by('p.created_at', 'DESC');
+        return $this->db->get()->result();
+    }
+
+    // Get pengerjaan statistics by user_id
+    public function get_pengerjaan_stats_by_user($user_id) {
+        $stats = array();
+        
+        $this->db->where('id_user', $user_id);
+        $stats['total'] = $this->db->count_all_results('pengerjaan');
+        
+        $this->db->where('id_user', $user_id);
+        $this->db->where('status', 'pending');
+        $stats['pending'] = $this->db->count_all_results('pengerjaan');
+        
+        $this->db->where('id_user', $user_id);
+        $this->db->where('status', 'proses');
+        $stats['proses'] = $this->db->count_all_results('pengerjaan');
+        
+        $this->db->where('id_user', $user_id);
+        $this->db->where('status', 'selesai');
+        $stats['selesai'] = $this->db->count_all_results('pengerjaan');
+        
+        return $stats;
+    }
+
     // Get statistics
     public function get_statistics() {
         $stats = array();

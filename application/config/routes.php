@@ -23,6 +23,11 @@ $route['ruangan/get_statistics'] = 'Ruangan/get_statistics';
 $route['pengerjaan'] = 'Pengerjaan';
 $route['pengerjaan/index'] = 'Pengerjaan/index';
 
+// Detail Tugas routes
+$route['detailtugas'] = 'DetailTugas';
+$route['detailtugas/detail'] = 'DetailTugas/index';
+$route['detailtugas/update_status'] = 'DetailTugas/update_status';
+
 // Tugas dan Standar routes
 $route['tugas_standar'] = 'Tugasandstandar';
 $route['tugas_standar/index'] = 'Tugasandstandar/index';

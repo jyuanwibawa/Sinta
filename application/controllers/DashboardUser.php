@@ -9,6 +9,7 @@ class DashboardUser extends CI_Controller
         parent::__construct();
         $this->load->model('Model_user', 'u');
         $this->load->model('Model_dashboard', 'd');
+        $this->load->model('Model_pengerjaan', 'p');
         
         // Cek login user
         if (!$this->session->userdata('user_logged_in')) {
@@ -32,11 +33,20 @@ class DashboardUser extends CI_Controller
             redirect('loginuser');
         }
         
+        // Get current user ID from session
+        $user_id = $this->session->userdata('user_id');
+        
+        // Get pengerjaan data for this user
+        $pengerjaan_list = $this->p->get_pengerjaan_by_user($user_id);
+        $pengerjaan_stats = $this->p->get_pengerjaan_stats_by_user($user_id);
+        
         $data = [
             'title' => 'Dashboard User',
             'page' => 'dashboard_user/index',
             'user_data' => $this->session->userdata(),
-            'total_users' => $this->u->count_user()
+            'total_users' => $this->u->count_user(),
+            'pengerjaan_list' => $pengerjaan_list,
+            'pengerjaan_stats' => $pengerjaan_stats
         ];
         
         $this->load->view('index_user', $data);
