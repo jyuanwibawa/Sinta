@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tugas extends CI_Controller {
+class Tugasandstandar extends CI_Controller {
 
     public function __construct()
     {
@@ -25,8 +25,8 @@ class Tugas extends CI_Controller {
         
         $active_satker=decrypt_url($this->session->userdata('active_satker'));
         $data = [
-            'title' => "Kelola Tugas",
-            'page' => "tugas/index",
+            'title' => "Tugas dan Standar",
+            'page' => "tugas_standar/index",
             'get_satker' => $this->d->get_satker($active_satker)
         ];
 

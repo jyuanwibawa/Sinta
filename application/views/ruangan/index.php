@@ -7,8 +7,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('assets') ?>/css/parameter-sistem.css">
-    <link rel="stylesheet" href="<?= base_url('assets') ?>/css/tugas-ruangan.css">
     <link rel="stylesheet" href="<?= base_url('assets') ?>/css/qr-code.css">
+    <style>
+        .modal {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        
+        /* Only show modals when explicitly triggered with the show class */
+        .modal.show {
+            display: flex !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* Card header styling */
+        .card-header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .header-title-group h4 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .header-title-group p {
+            margin: 4px 0 0 0;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* Status color - green for active */
+        .priority-success {
+            background-color: #10b981;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar will be loaded here by JavaScript -->
@@ -20,11 +66,11 @@
         <div class="content-body">
             <div class="table-card">
                 <div class="card-header-wrapper">
-                    <div class="header-action-row">
-                        <div class="header-title-group">
-                            <h4 id="room-title">Daftar Ruangan</h4>
-                            <p>Kelola informasi ruangan dan fasilitasnya</p>
-                        </div>
+                    <div class="header-title-group">
+                        <h4 id="room-title">Daftar Ruangan</h4>
+                        <p>Kelola informasi ruangan dan fasilitasnya</p>
+                    </div>
+                    <div class="header-actions">
                         <button class="btn-add" onclick="tambahRuangan()">
                             <i class="fa-solid fa-plus"></i> Tambah Ruangan
                         </button>
@@ -54,7 +100,7 @@
                                         <td><?= number_format($ruangan['kapasitas']) ?></td>
                                         <td>
                                             <?php 
-                                            $status_class = $ruangan['status'] == 'aktif' ? 'priority-high' : 'priority-med';
+                                            $status_class = $ruangan['status'] == 'aktif' ? 'priority-success' : 'priority-med';
                                             $status_text = ucfirst($ruangan['status']);
                                             ?>
                                             <span class="pill-priority <?= $status_class ?>"><?= $status_text ?></span>
@@ -290,6 +336,24 @@
     <script>
         // Load sidebar and initialize after DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Hide all modals on page load to prevent automatic popups
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.classList.remove('show');
+            });
+            
+            // Temporarily disable automatic modal triggering
+            let originalShowQRCodeModal = window.showQRCodeModal;
+            let originalEditRuangan = window.editRuangan;
+            let originalTambahRuangan = window.tambahRuangan;
+            
+            // Wait a bit before enabling modal functions to prevent auto-triggering
+            setTimeout(() => {
+                // Re-enable modal functions after page load
+                window.showQRCodeModal = originalShowQRCodeModal;
+                window.editRuangan = originalEditRuangan;
+                window.tambahRuangan = originalTambahRuangan;
+            }, 1000);
+            
             // Load sidebar
             if (typeof loadSidebar === 'function') {
                 loadSidebar();

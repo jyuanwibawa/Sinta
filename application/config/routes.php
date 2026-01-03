@@ -23,6 +23,10 @@ $route['ruangan/get_statistics'] = 'Ruangan/get_statistics';
 $route['pengerjaan'] = 'Pengerjaan';
 $route['pengerjaan/index'] = 'Pengerjaan/index';
 
+// Tugas dan Standar routes
+$route['tugas_standar'] = 'Tugasandstandar';
+$route['tugas_standar/index'] = 'Tugasandstandar/index';
+
 // $route['404_override'] = '';
 // $route['translate_uri_dashes'] = FALSE;
 
