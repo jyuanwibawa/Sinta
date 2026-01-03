@@ -28,6 +28,12 @@ $route['detailtugas'] = 'DetailTugas';
 $route['detailtugas/detail'] = 'DetailTugas/index';
 $route['detailtugas/update_status'] = 'DetailTugas/update_status';
 
+// Submit Tugas routes
+$route['submittugas'] = 'SubmitTugas';
+$route['submittugas/index'] = 'SubmitTugas/index';
+$route['submittugas/complete'] = 'SubmitTugas/complete';
+$route['submittugas/(:any)'] = 'SubmitTugas/index/$1';
+
 // Tugas dan Standar routes
 $route['tugas_standar'] = 'Tugasandstandar';
 $route['tugas_standar/index'] = 'Tugasandstandar/index';

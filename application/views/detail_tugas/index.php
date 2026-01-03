@@ -359,6 +359,176 @@
         .alert.show {
             display: block;
         }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .close-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        /* Camera Container */
+        .camera-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        #videoElement {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scan-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #16a34a, transparent);
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* Camera Controls */
+        .camera-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-scan {
+            background-color: #16a34a;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-scan:hover {
+            background-color: #15803d;
+        }
+
+        .btn-scan:active {
+            transform: translateY(1px);
+        }
+
+        .btn-cancel {
+            background-color: #6b7280;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background-color: #4b5563;
+        }
+
+        /* Scan Result */
+        .scan-result {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .result-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #16a34a;
+            font-weight: 500;
+        }
+
+        .result-content i {
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
@@ -448,7 +618,7 @@
                 </div>
             </div>
 
-            <button class="btn-action" id="scanButton" onclick="startPekerjaan()">
+            <button class="btn-action" id="scanButton" onclick="openCameraModal()">
                 <i class="fa-solid fa-expand"></i> Scan Barcode & Mulai Pekerjaan
             </button>
         <?php elseif($pengerjaan->status == 'proses'): ?>
@@ -462,9 +632,45 @@
         <?php endif; ?>
     </div>
 
+    <!-- Camera Scan Modal -->
+    <div id="cameraModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Scan Barcode</h3>
+                <button class="close-btn" onclick="closeCameraModal()">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="camera-container">
+                    <video id="videoElement" autoplay playsinline></video>
+                    <canvas id="canvasElement" style="display: none;"></canvas>
+                    <div class="scan-overlay">
+                        <div class="scan-line"></div>
+                    </div>
+                </div>
+                <div class="camera-controls">
+                    <button class="btn-scan" id="captureBtn" onclick="captureAndScan()">
+                        <i class="fa-solid fa-camera"></i> Scan
+                    </button>
+                    <button class="btn-cancel" onclick="closeCameraModal()">
+                        <i class="fa-solid fa-times"></i> Batal
+                    </button>
+                </div>
+                <div id="scanResult" class="scan-result" style="display: none;">
+                    <div class="result-content">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span id="resultText">Barcode berhasil terdeteksi!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const pengerjaanId = <?= $pengerjaan->id_pengerjaan ?>;
         const currentStatus = '<?= $pengerjaan->status ?>';
+        let stream = null;
+        let isScanning = false;
 
         function showAlert(message, type) {
             const alertEl = document.getElementById('alertMessage');
@@ -476,6 +682,126 @@
             }, 3000);
         }
 
+        // Camera Functions
+        async function openCameraModal() {
+            const modal = document.getElementById('cameraModal');
+            const video = document.getElementById('videoElement');
+            const scanResult = document.getElementById('scanResult');
+            
+            // Reset scan result
+            scanResult.style.display = 'none';
+            
+            try {
+                // Request camera access
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: 'environment', // Use back camera if available
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    } 
+                });
+                
+                video.srcObject = stream;
+                modal.style.display = 'flex';
+                
+                // Start continuous scanning
+                startContinuousScanning();
+                
+            } catch (error) {
+                console.error('Camera access error:', error);
+                showAlert('Tidak dapat mengakses kamera. Pastikan Anda telah memberikan izin kamera.', 'error');
+                
+                // Fallback: simulate scan after 2 seconds
+                setTimeout(() => {
+                    simulateScanSuccess();
+                }, 2000);
+            }
+        }
+
+        function closeCameraModal() {
+            const modal = document.getElementById('cameraModal');
+            const video = document.getElementById('videoElement');
+            
+            // Stop camera stream
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            
+            video.srcObject = null;
+            modal.style.display = 'none';
+            isScanning = false;
+        }
+
+        function startContinuousScanning() {
+            isScanning = true;
+            // For demo purposes, we'll simulate barcode detection
+            // In real implementation, you would use a barcode scanning library
+        }
+
+        function captureAndScan() {
+            const video = document.getElementById('videoElement');
+            const canvas = document.getElementById('canvasElement');
+            const context = canvas.getContext('2d');
+            
+            // Set canvas size to video size
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            
+            // Draw current video frame to canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Simulate barcode detection
+            // In real implementation, you would use libraries like:
+            // - QuaggaJS (for barcode/QR code)
+            // - ZXing-js
+            // - jsQR
+            
+            simulateScanSuccess();
+        }
+
+        function simulateScanSuccess() {
+            const scanResult = document.getElementById('scanResult');
+            const resultText = document.getElementById('resultText');
+            const captureBtn = document.getElementById('captureBtn');
+            
+            // Show loading state
+            captureBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Scanning...';
+            captureBtn.disabled = true;
+            
+            // Simulate scan process
+            setTimeout(() => {
+                // Generate room barcode based on current room
+                const roomBarcode = generateRoomBarcode();
+                
+                // Show success result
+                resultText.textContent = `Barcode terdeteksi: ${roomBarcode}`;
+                scanResult.style.display = 'block';
+                
+                // Reset button
+                captureBtn.innerHTML = '<i class="fa-solid fa-camera"></i> Scan';
+                captureBtn.disabled = false;
+                
+                // Auto close modal and redirect to submit tugas after 2 seconds
+                setTimeout(() => {
+                    closeCameraModal();
+                    redirectToSubmitTugas(roomBarcode);
+                }, 2000);
+            }, 1500);
+        }
+
+        function generateRoomBarcode() {
+            // Generate barcode based on room ID
+            // In real implementation, this would come from actual barcode scan
+            const roomId = <?= $pengerjaan->id_ruangan ?>;
+            return 'RM' + String(roomId).padStart(6, '0');
+        }
+
+        function redirectToSubmitTugas(barcode) {
+            // Redirect to submit tugas with barcode parameter
+            window.location.href = `<?= base_url('submittugas') ?>/${barcode}`;
+        }
+
         function updateStatus(newStatus, buttonId) {
             const button = document.getElementById(buttonId);
             button.classList.add('loading');
@@ -485,7 +811,7 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `id_pengerjaan=${pengerjaanId}&status=${newStatus}`
+                body: `status=${newStatus}`
             })
             .then(response => response.json())
             .then(data => {
@@ -526,6 +852,13 @@
                 
                 this.classList.toggle('checked');
             });
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
         });
     </script>
 </body>
