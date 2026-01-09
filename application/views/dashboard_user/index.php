@@ -34,9 +34,13 @@
                 <p>Halo, <span id="username-display"><?= $user_data['nama'] ?></span> 👋</p>
             </div>
             <div class="header-icons">
-                <button class="icon-btn">
+                <button class="icon-btn"
+                         onclick="window.location.href='<?= site_url('notifikasiuser') ?>'">
                     <i class="fa-regular fa-bell"></i>
-                    <span class="badge-dot">3</span>
+
+                    <?php if ($notif_unread > 0): ?>
+                        <span class="badge-dot"><?= $notif_unread ?></span>
+                    <?php endif; ?>
                 </button>
                 <button class="icon-btn" onclick="window.location.href='<?= base_url('loginuser/logout') ?>'">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>

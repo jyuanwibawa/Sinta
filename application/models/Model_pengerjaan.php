@@ -59,8 +59,19 @@ class Model_pengerjaan extends CI_Model {
         return $this->db->insert('pengerjaan', $data);
     }
 
-    // Update pengerjaan
+    // Update pengerjaan (🔥 DITAMBAHKAN AUTO completed_at)
     public function update_pengerjaan($id, $data) {
+
+        // ==========================================================
+        // 🔥 FIX: Jika status diubah menjadi "selesai",
+        // otomatis set completed_at dengan waktu sekarang
+        // ==========================================================
+        if (isset($data['status']) && $data['status'] === 'selesai') {
+            if (!isset($data['completed_at']) || empty($data['completed_at'])) {
+                $data['completed_at'] = date('Y-m-d H:i:s');
+            }
+        }
+
         $this->db->where('id_pengerjaan', $id);
         return $this->db->update('pengerjaan', $data);
     }
