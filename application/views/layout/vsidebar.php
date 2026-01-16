@@ -228,6 +228,18 @@
             </p>
           </a>
         </li>
+        <?php if ($this->session->userdata('admin_valid') == TRUE && (string)$this->session->userdata('role') === '0'): ?>
+  <li class="nav-item">
+  <?php $base = "Log Aktivitas"; ?>
+  <a href="<?= base_url('administrator/log-aktivitas') ?>" class="nav-link 
+  <?php if ($title == $base) { echo 'active'; } ?>">
+    <i class="nav-icon fas fa-history"></i>
+    <p>
+      <?= $base ?>
+    </p>
+  </a>
+</li>
+<?php endif; ?>
 
 
     </nav>

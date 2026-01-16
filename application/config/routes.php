@@ -10,6 +10,12 @@ $route['loginuser/logout'] = 'LoginUser/logout';
 $route['dashboard_user'] = 'DashboardUser';
 $route['dashboard_user/index'] = 'DashboardUser/index';
 
+//administrator
+$route['administrator'] = 'administrator/log_aktivitas/index';
+$route['administrator/log_aktivitas'] = 'administrator/log_aktivitas/index';
+$route['administrator/log-aktivitas'] = 'administrator/log_aktivitas/index';
+$route['translate_uri_dashes'] = FALSE;
+
 // Ruangan routes
 $route['ruangan'] = 'Ruangan';
 $route['ruangan/index'] = 'Ruangan/index';
@@ -37,6 +43,15 @@ $route['submittugas/(:any)'] = 'SubmitTugas/index/$1';
 // Tugas dan Standar routes
 $route['tugas_standar'] = 'Tugasandstandar';
 $route['tugas_standar/index'] = 'Tugasandstandar/index';
+
+// Cetak Laporan Rekap
+$route['cetak-rekap'] = 'CetakLaporanRekap/index';
+$route['cetak-rekap/preview'] = 'CetakLaporanRekap/preview';
+$route['cetak-rekap/pdf'] = 'CetakLaporanRekap/pdf';
+$route['cetak-rekap/print'] = 'CetakLaporanRekap/print';
+
+// Statistik Kinerja TU
+$route['statistik-kinerja'] = 'StatistikKinerjaTu/index';
 
 // $route['404_override'] = '';
 // $route['translate_uri_dashes'] = FALSE;

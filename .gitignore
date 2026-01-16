@@ -1,2 +1,4 @@
-application/logs/
+/vendor/
 uploads/
+application/logs/
+.env

@@ -13,6 +13,9 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Model_user','u');
+
+        // model log (tidak mengubah struktur)
+        $this->load->model('Model_activity_log');
     }
 
     function index()
@@ -33,6 +36,14 @@ class Login extends CI_Controller
         // $this->form_validation->set_rules('capcay', 'captcha', 'required|trim');
 
         if ($this->form_validation->run() == FALSE) {
+
+            // log login gagal (validasi form gagal)
+            $this->Model_activity_log->add(
+                'LOGIN_FAIL',
+                'login',
+                'Validasi form gagal (email/password tidak valid). Email input: '.$this->input->post('email', TRUE)
+            );
+
             $this->session->set_flashdata('result_login', '<br>Cek kembali Username / Password / Captcha yang Anda masukkan.');
             redirect('login', 'refresh');
         } else {
@@ -42,6 +53,7 @@ class Login extends CI_Controller
             $u = $usr;
             $p = md5($psw);
             $cek = $this->u->cek($u, $p);
+
             if ($cek->num_rows() > 0) {
                 //login berhasil, buat session
                 foreach ($cek->result() as $row) {
@@ -60,10 +72,25 @@ class Login extends CI_Controller
                     $sess_data['admin_valid'] = true;
                     $this->session->set_userdata($sess_data);
                 }
+
+                // log login sukses (setelah session dibuat, sebelum redirect)
+                $this->Model_activity_log->add(
+                    'LOGIN',
+                    'login',
+                    'Login berhasil. Email: '.$usr
+                );
+
                 redirect('dashboard');
             } else {
-                $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
 
+                // log login gagal (username/password salah)
+                $this->Model_activity_log->add(
+                    'LOGIN_FAIL',
+                    'login',
+                    'Login gagal (password salah / user tidak ditemukan). Email: '.$usr
+                );
+
+                $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
                 redirect('login');
             }
         }
@@ -71,6 +98,15 @@ class Login extends CI_Controller
 
     function logout()
     {
+        // log logout (ambil info user sebelum session dihancurkan)
+        $nama  = $this->session->userdata('nama');
+        $email = $this->session->userdata('email');
+        $this->Model_activity_log->add(
+            'LOGOUT',
+            'login',
+            'Logout. User: '.$nama.' ('.$email.')'
+        );
+
         $this->session->sess_destroy();
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
         $this->output->set_header("Pragma: no-cache");

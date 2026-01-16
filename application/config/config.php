@@ -374,3 +374,6 @@ $config['built_date'] = '2024';
 $config['version'] = '1.0.0';
 $config['messenger_wa'] = 'http://lokal.pn-surabayakota.go.id/asuba/Pengirim/kirimpesan/';
 // $config['messenger_wa'] = 'http://lokal.pn-surabayakota.go.id/asuba/application/models/model_pesan.php';
+$config['log_threshold'] = 4;
+$config['enable_hooks'] = TRUE;
+

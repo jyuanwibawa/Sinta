@@ -52,7 +52,8 @@ class DashboardUser extends CI_Controller
             'total_users' => $this->u->count_user(),
             'pengerjaan_list' => $pengerjaan_list,
             'pengerjaan_stats' => $pengerjaan_stats,
-            'notif_unread' => $notif_unread
+            'notif_unread' => $notif_unread,
+            'buku_panduan_url' => base_url('assets/panduan/buku_panduan_cleancourt.pdf')
         ];
         
         $this->load->view('index_user', $data);

@@ -14,8 +14,10 @@
     <li class="menu-item" data-page="verifikasi">
       <i class="fa-regular fa-square-check"></i> Verifikasi
     </li>
-    <li class="menu-item" data-page="cetak-rekap">
+    <li class="menu-item">
+    <a href="<?= site_url('DashboardTu/cetak_laporan_rekap'); ?>" style="text-decoration:none;color:inherit;">
       <i class="fa-solid fa-print"></i> Cetak Rekap
+    </a>
     </li>
     <li class="menu-item" data-page="statistik">
       <i class="fa-solid fa-chart-column"></i> Statistik

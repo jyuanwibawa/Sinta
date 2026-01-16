@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Dompdf\\Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'PHPUnit\\Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit\\Framework\\ActualValueIsNotAnObjectException' => $vendorDir . '/phpunit/phpunit/src/Framework/Exception/ActualValueIsNotAnObjectException.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert.php',
@@ -58,6 +59,7 @@ return array(
     'PHPUnit\\Framework\\Constraint\\LogicalXor' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Operator/LogicalXor.php',
     'PHPUnit\\Framework\\Constraint\\ObjectEquals' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php',
     'PHPUnit\\Framework\\Constraint\\ObjectHasAttribute' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Object/ObjectHasAttribute.php',
+    'PHPUnit\\Framework\\Constraint\\ObjectHasProperty' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Object/ObjectHasProperty.php',
     'PHPUnit\\Framework\\Constraint\\Operator' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Operator/Operator.php',
     'PHPUnit\\Framework\\Constraint\\RegularExpression' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/String/RegularExpression.php',
     'PHPUnit\\Framework\\Constraint\\SameSize' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Cardinality/SameSize.php',
@@ -396,6 +398,7 @@ return array(
     'PharIo\\Manifest\\ManifestLoader' => $vendorDir . '/phar-io/manifest/src/ManifestLoader.php',
     'PharIo\\Manifest\\ManifestLoaderException' => $vendorDir . '/phar-io/manifest/src/exceptions/ManifestLoaderException.php',
     'PharIo\\Manifest\\ManifestSerializer' => $vendorDir . '/phar-io/manifest/src/ManifestSerializer.php',
+    'PharIo\\Manifest\\NoEmailAddressException' => $vendorDir . '/phar-io/manifest/src/exceptions/NoEmailAddressException.php',
     'PharIo\\Manifest\\PhpElement' => $vendorDir . '/phar-io/manifest/src/xml/PhpElement.php',
     'PharIo\\Manifest\\PhpExtensionRequirement' => $vendorDir . '/phar-io/manifest/src/values/PhpExtensionRequirement.php',
     'PharIo\\Manifest\\PhpVersionRequirement' => $vendorDir . '/phar-io/manifest/src/values/PhpVersionRequirement.php',
