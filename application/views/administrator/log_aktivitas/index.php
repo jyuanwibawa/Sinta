@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+﻿<div class="content-wrapper">
   <section class="content-header">
     <h1>Log Aktivitas Sistem</h1>
     <ol class="breadcrumb">
@@ -25,11 +25,11 @@
         }
       }
 
-      $q = $filters['q'] ?? '';
-      $start = $filters['start'] ?? '';
-      $end = $filters['end'] ?? '';
-      $role_f = $filters['role'] ?? '';
-      $limit = $filters['limit'] ?? 500;
+      $q = isset($filters['q']) ? $filters['q'] : '';
+      $start = isset($filters['start']) ? $filters['start'] : '';
+      $end = isset($filters['end']) ? $filters['end'] : '';
+      $role_f = isset($filters['role']) ? $filters['role'] : '';
+      $limit = isset($filters['limit']) ? $filters['limit'] : 500;
 
       // helper badge
       $badge = function($action) {
@@ -176,7 +176,7 @@
               <tr><td colspan="8" class="text-center">Tidak ada data log.</td></tr>
             <?php else: foreach ($logs as $l): ?>
               <?php
-                [$cls, $txt] = $badge($l->action);
+                list($cls, $txt) = $badge($l->action);
                 $detail_id = 'detail_'.$l->id;
               ?>
               <tr>

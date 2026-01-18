@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DashboardTu extends CI_Controller {
@@ -70,7 +70,7 @@ class DashboardTu extends CI_Controller {
 
                 // fallback terakhir: OB + id
                 if ($nama === '') {
-                    $nama = 'OB ' . (int)($row->id_user ?? 0);
+                    $nama = 'OB ' . (int)(isset($row->id_user) ? $row->id_user : 0);
                 }
 
                 // Set field yang dipakai view

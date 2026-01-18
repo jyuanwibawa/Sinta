@@ -9,6 +9,8 @@ $route['loginuser/proses'] = 'LoginUser/proses';
 $route['loginuser/logout'] = 'LoginUser/logout';
 $route['dashboard_user'] = 'DashboardUser';
 $route['dashboard_user/index'] = 'DashboardUser/index';
+$route['notifikasiuser'] = 'NotifikasiUser';
+$route['notifikasiuser/index'] = 'NotifikasiUser/index';
 
 //administrator
 $route['administrator'] = 'administrator/log_aktivitas/index';

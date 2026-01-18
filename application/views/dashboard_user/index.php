@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -61,21 +61,21 @@
         <div class="status-cards-container">
             <div class="status-card menunggu">
                 <div class="status-info">
-                    <span class="status-count"><?= $pengerjaan_stats['pending'] ?? 0 ?></span>
+                    <span class="status-count"><?php echo isset($pengerjaan_stats['pending']) ? $pengerjaan_stats['pending'] : 0; ?></span>
                     <span class="status-title">Menunggu</span>
                 </div>
             </div>
 
             <div class="status-card dikerjakan">
                 <div class="status-info">
-                    <span class="status-count"><?= $pengerjaan_stats['proses'] ?? 0 ?></span>
+                    <span class="status-count"><?php echo isset($pengerjaan_stats['proses']) ? $pengerjaan_stats['proses'] : 0; ?></span>
                     <span class="status-title">Dikerjakan</span>
                 </div>
             </div>
 
             <div class="status-card selesai">
                 <div class="status-info">
-                    <span class="status-count"><?= $pengerjaan_stats['selesai'] ?? 0 ?></span>
+                    <span class="status-count"><?php echo isset($pengerjaan_stats['selesai']) ? $pengerjaan_stats['selesai'] : 0; ?></span>
                     <span class="status-title">Selesai</span>
                 </div>
             </div>
@@ -86,8 +86,8 @@
                 <span>Progress Hari Ini</span>
                 <span>
                     <?php
-                        $total = $pengerjaan_stats['total'] ?? 0;
-                        $selesai = $pengerjaan_stats['selesai'] ?? 0;
+                        $total = isset($pengerjaan_stats['total']) ? $pengerjaan_stats['total'] : 0;
+                        $selesai = isset($pengerjaan_stats['selesai']) ? $pengerjaan_stats['selesai'] : 0;
                         $progress = $total > 0 ? round(($selesai / $total) * 100) : 0;
                         echo $progress . '%';
                     ?>
@@ -102,7 +102,7 @@
     <main class="main-content">
         <div class="section-header">
             <h2 class="section-title">Daftar Tugas Hari Ini</h2>
-            <span class="task-count"><?= $pengerjaan_stats['total'] ?? 0 ?> tugas</span>
+            <span class="task-count"><?php echo isset($pengerjaan_stats['total']) ? $pengerjaan_stats['total'] : 0; ?> tugas</span>
         </div>
 
         <?php if (!empty($pengerjaan_list)): ?>

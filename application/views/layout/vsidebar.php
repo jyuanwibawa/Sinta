@@ -1,4 +1,4 @@
-<!-- Main Sidebar Container -->
+﻿<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-warning">
   <!-- Brand Logo -->
   <!-- <a href="<?= base_url() ?>" class="brand-link bg-dark text-center"> -->
@@ -129,6 +129,7 @@
         <?php
         $active_satker=decrypt_url($this->session->userdata('active_satker'));
         // echo "aktif : ".$active_satker;
+        if (isset($get_satker) && is_array($get_satker)) {
         foreach($get_satker as $satkers){
           if((($satkers->satker_id != $active_satker) && ($active_satker=='1')) || (($satkers->satker_id != $active_satker) && ($satkers->satker_id=='1'))){
 
@@ -188,9 +189,10 @@
           </ul>
         </li>
         <?php
-        }}
+        }
+        }
         ?>
-
+        <?php } ?>
         <!-- Menu Integrasi Simetri -->
         <li class="nav-item">
           <?php $base = "Integrasi Simetri"; ?>

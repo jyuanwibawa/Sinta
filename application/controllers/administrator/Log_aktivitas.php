@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); 
+﻿<?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 class Log_aktivitas extends CI_Controller {
 
@@ -6,6 +6,7 @@ class Log_aktivitas extends CI_Controller {
     parent::__construct();
     $this->load->library('session');
     $this->load->model('Model_activity_log');
+    $this->load->model('Model_dashboard', 'd');
 
     // Proteksi akses: hanya Administrator
     if ($this->session->userdata('admin_valid') != TRUE) {
@@ -31,10 +32,14 @@ class Log_aktivitas extends CI_Controller {
 
     $data['logs']    = $this->Model_activity_log->get_all($filters);
     $data['filters'] = $filters;
+    
+    // Get satker data for sidebar
+    $active_satker = decrypt_url($this->session->userdata('active_satker'));
+    $data['get_satker'] = $this->d->get_satker($active_satker);
 
     $this->load->view('layout/vhead'); 
     $this->load->view('administrator/log_aktivitas/index', $data);
-    $this->load->view('layout/vsidebar'); 
+    $this->load->view('layout/vsidebar', $data); 
      $this->load->view('layout/vnav'); 
     $this->load->view('layout/vfooter');
   }

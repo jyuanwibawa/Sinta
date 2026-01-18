@@ -94,7 +94,7 @@ if ($this->session->flashdata('result_login')) {
 							<!-- Form: 0 -->
 							<form id="form_login" name="form_login" action="<?php echo base_url('masuk'); ?>" method="post" enctype="multipart/form-data" onsubmit="return false">
 								<div class="if-group">
-									<label for="email">Email</label>
+									<label for="email">Email1testrubah</label>
 									<input type="email" id="email" name="email" autocomplete="email" class="form-control" required="">
 								</div>
 								<div class="if-group password-group">

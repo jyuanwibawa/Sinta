@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -31,7 +31,7 @@
 
                 <div class="notif-content">
                     <h2 class="notif-title">
-                        <?= htmlspecialchars($n->judul ?? 'Notifikasi') ?>
+                        <?= htmlspecialchars(isset($n->judul) ? $n->judul : 'Notifikasi') ?>
                     </h2>
 
                     <p class="notif-desc">

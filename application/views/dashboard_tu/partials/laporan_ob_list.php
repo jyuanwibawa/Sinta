@@ -1,4 +1,4 @@
-<?php if(!empty($laporan)): ?>
+﻿<?php if(!empty($laporan)): ?>
     <?php foreach($laporan as $row): ?>
         <div class="job-card">
             <div class="job-left">
@@ -9,7 +9,7 @@
                         <?= $row->nama_ruangan; ?> • <?= $row->updated_at; ?>
                     </div>
                     <div class="job-info-activity">
-                        Aktivitas: <?= $row->aktivitas; ?>
+                        Aktivitas: <?= isset($row->aktivitas) ? $row->aktivitas : '-'; ?>
                     </div>
                 </div>
             </div>

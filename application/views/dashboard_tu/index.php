@@ -1,4 +1,4 @@
-<div class="app"> 
+﻿<div class="app"> 
 
   <div class="sidebar">
     <div class="sidebar-brand">
@@ -192,12 +192,12 @@
           <div style="display:flex;gap:12px;flex-wrap:wrap">
             <div style="flex:1;min-width:240px">
               <input type="date" id="stat_start"
-                value="<?= html_escape($stat_start ?? date('Y-m-01')); ?>"
+                value="<?= html_escape(isset($stat_start) ? $stat_start : date('Y-m-01')); ?>"
                 style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:8px;">
             </div>
             <div style="flex:1;min-width:240px">
               <input type="date" id="stat_end"
-                value="<?= html_escape($stat_end ?? date('Y-m-t')); ?>"
+                value="<?= html_escape(isset($stat_end) ? $stat_end : date('Y-m-t')); ?>"
                 style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:8px;">
             </div>
             <div style="min-width:160px">
@@ -244,12 +244,12 @@
           <div style="display:flex;gap:12px;flex-wrap:wrap">
             <div style="flex:1;min-width:240px">
               <div style="font-size:12px;color:#6b7280;">Jumlah Ruangan Bersih</div>
-              <div style="font-size:22px;font-weight:800;"><?= (int)($ruangan_bersih ?? 0) ?></div>
+              <div style="font-size:22px;font-weight:800;"><?= (int)(isset($ruangan_bersih) ? $ruangan_bersih : 0) ?></div>
             </div>
             <div style="flex:1;min-width:240px">
               <div style="font-size:12px;color:#6b7280;">Rata-rata Waktu Penyelesaian</div>
               <div style="font-size:22px;font-weight:800;">
-                <?= number_format((float)($avg_menit ?? 0), 1) ?> <span style="font-size:12px;color:#6b7280;">menit</span>
+                <?= number_format((float)(isset($avg_menit) ? $avg_menit : 0), 1) ?> <span style="font-size:12px;color:#6b7280;">menit</span>
               </div>
             </div>
           </div>
@@ -287,7 +287,7 @@
                     else if (!empty($ob->full_name)) $nama = $ob->full_name;
                     else if (!empty($ob->username)) $nama = $ob->username;
 
-                    if ($nama === '') $nama = 'OB ' . (int)($ob->id_user ?? 0);
+                    if ($nama === '') $nama = 'OB ' . (int)(isset($ob->id_user) ? $ob->id_user : 0);
 
                     $kb = isset($ob->kebersihan) ? (float)$ob->kebersihan : 0;
                     $kr = isset($ob->kerapihan)  ? (float)$ob->kerapihan  : 0;
@@ -365,13 +365,13 @@
             return;
           }
 
-          const rows = <?= json_encode($list_ob ?? []); ?>;
+          const rows = <?= json_encode(isset($list_ob) ? $list_ob : []); ?>;
           if (!rows.length) {
             if (info) info.innerText = 'Tidak ada data pada periode ini, diagram tidak ditampilkan.';
             return;
           }
 
-          const labels = rows.map(r => (r.display_nama || r.nama_ob || r.nama || r.full_name || r.username || ('OB ' + (r.id_user ?? ''))));
+          const labels = rows.map(r => (r.display_nama || r.nama_ob || r.nama || r.full_name || r.username || ('OB ' + (isset(r.id_user) ? r.id_user : ''))));
           const keb = rows.map(r => parseFloat(r.kebersihan || 0));
           const ker = rows.map(r => parseFloat(r.kerapihan || 0));
 

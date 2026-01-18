@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -101,8 +101,8 @@
                                 <?php foreach($pengerjaan_list as $item): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($item->nama_ruangan) ?></td>
-                                    <td>Lantai <?= htmlspecialchars($item->lantai ?? '-') ?></td>
-                                    <td><?= htmlspecialchars($item->luas ?? '-') ?></td>
+                                    <td>Lantai <?= htmlspecialchars(isset($item->lantai) ? $item->lantai : '-') ?></td>
+                                    <td><?= htmlspecialchars(isset($item->luas) ? $item->luas : '-') ?></td>
                                     <td>
                                         <div class="admin-cell">
                                             <i class="far fa-user admin-icon"></i>
@@ -115,9 +115,13 @@
                                         <div class="task-standard-container">
                                             <?php 
                                             $tugas_data = json_decode($item->tugas, true);
+                                            // Encode Base64 agar aman dikirim ke Javascript
+                                            $tugas_safe = base64_encode($item->tugas);
+                                            $standar_safe = base64_encode($item->standar);
+                                            
                                             if ($tugas_data && is_array($tugas_data)) {
                                                 $count = count($tugas_data);
-                                                echo '<a href="#" class="badge-combined" style="text-decoration: none;" onclick="showTugasDetail(\'' . htmlspecialchars($item->tugas) . '\', \'' . htmlspecialchars($item->standar) . '\')">';
+                                                echo '<a href="#" class="badge-combined" style="text-decoration: none;" onclick="showTugasDetail(\'' . $tugas_safe . '\', \'' . $standar_safe . '\')">';
                                                 echo '<i class="far fa-file-alt"></i>';
                                                 echo '<i class="far fa-check-square"></i>';
                                                 echo $count . ' Tugas';
@@ -166,7 +170,6 @@
         </div>
     </div>
 
-    <!-- Modal Tambah Pengerjaan -->
     <div id="modalTambahPengerjaan" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
@@ -203,7 +206,6 @@
                     </select>
                 </div>
                 
-                <!-- Dynamic Tugas dan Standar Fields -->
                 <div class="form-group">
                     <label>Tugas dan Standar</label>
                     <div id="tugasStandarContainer">
@@ -237,7 +239,6 @@
         </div>
     </div>
 
-    <!-- Modal Edit Pengerjaan -->
     <div id="modalEditPengerjaan" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
@@ -275,12 +276,10 @@
                     </select>
                 </div>
                 
-                <!-- Dynamic Tugas dan Standar Fields for Edit -->
                 <div class="form-group">
                     <label>Tugas dan Standar</label>
                     <div id="editTugasStandarContainer">
-                        <!-- Fields will be populated by JavaScript -->
-                    </div>
+                        </div>
                     <button type="button" class="btn-add-more" onclick="addEditTugasStandar()">+ Tambah Tugas & Standar</button>
                 </div>
                 
@@ -312,17 +311,16 @@
     <script>
         // Make sidebar full when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Remove sidebar-mini class and add sidebar-open for full sidebar
-            document.body.classList.remove('sidebar-mini');
-            document.body.classList.add('sidebar-open');
+            if(document.body) {
+                document.body.classList.remove('sidebar-mini');
+                document.body.classList.add('sidebar-open');
+            }
             
-            // Ensure sidebar stays open
             const mainSidebar = document.querySelector('.main-sidebar');
             if (mainSidebar) {
                 mainSidebar.style.width = '250px';
             }
             
-            // Adjust content wrapper margin
             const contentWrapper = document.querySelector('.content-wrapper');
             if (contentWrapper) {
                 contentWrapper.style.marginLeft = '250px';
@@ -335,22 +333,18 @@
         }
 
         function editPengerjaan(button, id) {
-            // Fetch data from server
             fetch(`<?= base_url('pengerjaan/get_by_id') ?>/` + id)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // Populate edit form
                         document.getElementById('editId').value = data.data.id_pengerjaan;
                         document.getElementById('editIdRuangan').value = data.data.id_ruangan;
                         document.getElementById('editIdUser').value = data.data.id_user;
                         document.getElementById('editPrioritas').value = data.data.prioritas;
                         document.getElementById('editStatus').value = data.data.status;
                         
-                        // Populate tugas and standar fields
                         populateEditTugasStandar(data.data.tugas, data.data.standar);
                         
-                        // Show modal
                         document.getElementById('modalEditPengerjaan').style.display = 'flex';
                     } else {
                         alert('Gagal mengambil data: ' + data.message);
@@ -370,16 +364,14 @@
             let standarData = [];
             
             try {
-                tugasData = JSON.parse(tugasJson);
-                standarData = JSON.parse(standarJson);
+                tugasData = typeof tugasJson === 'string' ? JSON.parse(tugasJson) : tugasJson;
+                standarData = typeof standarJson === 'string' ? JSON.parse(standarJson) : standarJson;
             } catch (e) {
-                // If not JSON, treat as single task
                 tugasData = [tugasJson];
                 standarData = [standarJson];
             }
             
             if (!Array.isArray(tugasData) || tugasData.length === 0) {
-                // Add empty field if no data
                 tugasData = [''];
                 standarData = [''];
             }
@@ -387,12 +379,15 @@
             tugasData.forEach((tugas, index) => {
                 const newItem = document.createElement('div');
                 newItem.className = 'tugas-standar-item';
+                
+                const standarValue = standarData && standarData[index] ? standarData[index] : '';
+
                 newItem.innerHTML = `
                     <div class="tugas-field">
                         <input type="text" name="tugas[]" placeholder="Masukkan nama tugas" value="${tugas || ''}" required>
                     </div>
                     <div class="standar-field">
-                        <textarea name="standar[]" rows="2" placeholder="Masukkan standar pelaksanaan tugas">${standarData[index] || ''}</textarea>
+                        <textarea name="standar[]" rows="2" placeholder="Masukkan standar pelaksanaan tugas">${standarValue}</textarea>
                     </div>
                     <button type="button" class="btn-remove" onclick="removeEditTugasStandar(this)">Hapus</button>
                 `;
@@ -441,25 +436,35 @@
             });
         }
 
-        function showTugasDetail(tugasJson, standarJson) {
+        function showTugasDetail(tugasBase64, standarBase64) {
             let tugasData = [];
             let standarData = [];
+            
             try {
+                // Decode Base64 string from PHP
+                const tugasJson = atob(tugasBase64);
+                const standarJson = atob(standarBase64);
+                
                 tugasData = JSON.parse(tugasJson);
                 standarData = JSON.parse(standarJson);
             } catch (e) {
-                tugasData = [tugasJson];
-                standarData = [standarJson];
+                console.error("Gagal parse data:", e);
+                alert("Format data tidak valid.");
+                return;
             }
             
             let detailText = 'Daftar Tugas:\n\n';
-            tugasData.forEach((tugas, index) => {
-                detailText += `${index + 1}. ${tugas || '-'}\n`;
-                if (standarData[index]) {
-                    detailText += `   Standar: ${standarData[index]}\n`;
-                }
-                detailText += '\n';
-            });
+            if(Array.isArray(tugasData)){
+                tugasData.forEach((tugas, index) => {
+                    detailText += `${index + 1}. ${tugas || '-'}\n`;
+                    if (standarData && standarData[index]) {
+                        detailText += `   Standar: ${standarData[index]}\n`;
+                    }
+                    detailText += '\n';
+                });
+            } else {
+                 detailText += "Data tidak tersedia.";
+            }
             
             alert(detailText);
         }
@@ -471,12 +476,10 @@
         }
 
         function detailPengerjaan(button, id) {
-            // Fetch data from server
             fetch(`<?= base_url('pengerjaan/get_by_id') ?>/` + id)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // Create detail display
                         let detailText = `Detail Pengerjaan:\n\n`;
                         detailText += `ID: ${data.data.id_pengerjaan}\n`;
                         detailText += `Ruangan: ${data.data.nama_ruangan}\n`;
@@ -485,24 +488,25 @@
                         detailText += `Status: ${data.data.status}\n`;
                         detailText += `Dibuat: ${data.data.created_at}\n\n`;
                         
-                        // Parse and display tugas data
                         let tugasData = [];
                         let standarData = [];
                         try {
-                            tugasData = JSON.parse(data.data.tugas);
-                            standarData = JSON.parse(data.data.standar);
+                            tugasData = typeof data.data.tugas === 'string' ? JSON.parse(data.data.tugas) : data.data.tugas;
+                            standarData = typeof data.data.standar === 'string' ? JSON.parse(data.data.standar) : data.data.standar;
                         } catch (e) {
                             tugasData = [data.data.tugas];
                             standarData = [data.data.standar];
                         }
                         
                         detailText += `Tugas dan Standar:\n`;
-                        tugasData.forEach((tugas, index) => {
-                            detailText += `${index + 1}. ${tugas || '-'}\n`;
-                            if (standarData[index]) {
-                                detailText += `   Standar: ${standarData[index]}\n`;
-                            }
-                        });
+                        if(Array.isArray(tugasData)) {
+                             tugasData.forEach((tugas, index) => {
+                                detailText += `${index + 1}. ${tugas || '-'}\n`;
+                                if (standarData && standarData[index]) {
+                                    detailText += `   Standar: ${standarData[index]}\n`;
+                                }
+                            });
+                        }
                         
                         alert(detailText);
                     } else {
@@ -519,10 +523,8 @@
             document.getElementById(modalId).style.display = 'none';
         }
 
-        // Dynamic Tugas & Standar Functions
         function addTugasStandar() {
             const container = document.getElementById('tugasStandarContainer');
-            const itemCount = container.children.length;
             
             const newItem = document.createElement('div');
             newItem.className = 'tugas-standar-item';
@@ -560,19 +562,12 @@
             });
         }
 
-        // Handle form submission for tambah pengerjaan
         document.getElementById('formTambahPengerjaan')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            this.submit();
         });
 
-        // Handle form submission for edit pengerjaan
         document.getElementById('formEditPengerjaan')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            this.submit();
         });
 
-        // Close modal when clicking outside
         window.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';

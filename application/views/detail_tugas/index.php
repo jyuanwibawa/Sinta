@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -549,7 +549,7 @@
             
             <div class="meta-row">
                 <i class="fa-solid fa-location-dot"></i>
-                <span><?= htmlspecialchars($pengerjaan->nama_ruangan) ?> • Lantai <?= htmlspecialchars($pengerjaan->lantai ?? '-') ?></span>
+                <span><?= htmlspecialchars($pengerjaan->nama_ruangan) ?> • Lantai <?= htmlspecialchars(isset($pengerjaan->lantai) ? $pengerjaan->lantai : '-') ?></span>
             </div>
             
             <div class="meta-row">
