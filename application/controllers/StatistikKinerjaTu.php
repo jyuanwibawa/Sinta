@@ -11,6 +11,16 @@ class StatistikKinerjaTu extends CI_Controller {
 
         $this->load->model('Model_statistik_kinerja', 'stat');
 
+        // ===== TAMBAHAN: guard login TU (tanpa ubah struktur utama) =====
+        // wajib login user
+        if (!$this->session->userdata('user_logged_in')) {
+            redirect('loginuser');
+        }
+        // wajib TU
+        if ((int)$this->session->userdata('is_tu') !== 1) {
+            redirect('dashboard_user');
+        }
+
         // $this->_authorize_ktu();
     }
 
@@ -38,14 +48,39 @@ class StatistikKinerjaTu extends CI_Controller {
             $tmp = $start; $start = $end; $end = $tmp;
         }
 
+        // ===== TAMBAHAN: validasi format tanggal (anti input aneh) =====
+        // (tanpa mengubah struktur alur)
+        if (!preg_match('/^\d{4}\-\d{2}\-\d{2}$/', $start)) $start = date('Y-m-01');
+        if (!preg_match('/^\d{4}\-\d{2}\-\d{2}$/', $end))   $end   = date('Y-m-t');
+
         // Data statistik
         $totalKomplain = (int) $this->stat->indikator_komplain($start, $end);
         $ruanganBersih = (int) $this->stat->jumlah_ruangan_bersih($start, $end);
         $avgMenit      = (float) $this->stat->rata2_waktu_selesai_menit($start, $end);
         $listOb        = $this->stat->kinerja_ob($start, $end);
 
+        // ===== TAMBAHAN: normalisasi nilai komplain (agar sesuai tampilan, misal 8) =====
+        if ($totalKomplain < 0) $totalKomplain = 0;
+
         // amankan nilai
         if ($avgMenit < 0) $avgMenit = 0;
+
+        // ===== TAMBAHAN: pastikan nama tampil di view (fallback aman) =====
+        if (!empty($listOb)) {
+            foreach ($listOb as $row) {
+                $nama = '';
+                if (!empty($row->display_nama)) $nama = $row->display_nama;
+                else if (!empty($row->nama_ob)) $nama = $row->nama_ob;
+                else if (!empty($row->nama)) $nama = $row->nama;
+                else if (!empty($row->full_name)) $nama = $row->full_name;
+                else if (!empty($row->username)) $nama = $row->username;
+
+                if ($nama === '') {
+                    $nama = 'OB ' . (int)($row->id_user ?? 0);
+                }
+                $row->display_nama = $nama;
+            }
+        }
 
         $data = [
             'title'               => 'Statistik Kinerja',

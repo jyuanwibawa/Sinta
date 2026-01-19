@@ -22,13 +22,29 @@ class Log_aktivitas extends CI_Controller {
   public function index() {
     $data['title'] = 'Log Aktivitas';
 
+    $status = strtolower(trim((string)$this->input->get('status', TRUE))); // normal/gagal/warning
+    $data['status'] = $status;
+
     $filters = [
       'q'     => $this->input->get('q', TRUE),
       'start' => $this->input->get('start', TRUE),
       'end'   => $this->input->get('end', TRUE),
       'role'  => $this->input->get('role', TRUE),
-      'limit' => $this->input->get('limit', TRUE) ?: 500
+      'limit' => $this->input->get('limit', TRUE) ?: 500,
+
+      // TAMBAHAN: status filter
+      'status' => $status
     ];
+
+    // Log open page (pakai add_as agar tidak guest)
+    $this->Model_activity_log->add_as(
+      $this->session->userdata('user_id'),
+      $this->session->userdata('nama') . ' (' . $this->session->userdata('email') . ')',
+      'Administrator',
+      'OPEN_PAGE',
+      'log_aktivitas',
+      'Access: log_aktivitas::index'
+    );
 
     $data['logs']    = $this->Model_activity_log->get_all($filters);
     $data['filters'] = $filters;
@@ -39,8 +55,10 @@ class Log_aktivitas extends CI_Controller {
 
     $this->load->view('layout/vhead'); 
     $this->load->view('administrator/log_aktivitas/index', $data);
+
+    // FIX: sidebar perlu $data karena pakai $get_satker
     $this->load->view('layout/vsidebar', $data); 
-     $this->load->view('layout/vnav'); 
+    $this->load->view('layout/vnav'); 
     $this->load->view('layout/vfooter');
   }
 }

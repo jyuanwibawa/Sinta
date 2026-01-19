@@ -27,6 +27,51 @@
         .icon-btn i.fa-book {
             font-size: 18px;
         }
+
+        /* NOTIFIKASI BADGE DI LONCENG  */
+        .icon-btn {
+            position: relative; /* agar badge bisa absolute di dalam tombol */
+        }
+
+        .badge-dot {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #dc3545;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 999px;
+            min-width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        }
+
+        /* kalau angkanya 2-3 digit, tetap rapi */
+        .badge-dot {
+            transform: translate(0, 0);
+        }
+
+        /* efek lonceng berbeda saat ada notifikasi */
+        .icon-btn.has-notif i.fa-bell,
+        .icon-btn.has-notif i.fa-regular.fa-bell {
+            animation: bell-shake 0.6s ease-in-out;
+        }
+
+        @keyframes bell-shake {
+            0%   { transform: rotate(0); }
+            20%  { transform: rotate(-12deg); }
+            40%  { transform: rotate(12deg); }
+            60%  { transform: rotate(-10deg); }
+            80%  { transform: rotate(10deg); }
+            100% { transform: rotate(0); }
+        }
+        /* ===== END TAMBAHAN ===== */
     </style>
 </head>
 <body>
@@ -37,7 +82,9 @@
                 <p>Halo, <span id="username-display"><?= $user_data['nama'] ?></span> 👋</p>
             </div>
             <div class="header-icons">
-                <button class="icon-btn"
+
+                <!-- TAMBAHAN kecil: class has-notif kalau ada notif_unread -->
+                <button class="icon-btn <?= ($notif_unread > 0) ? 'has-notif' : '' ?>"
                          onclick="window.location.href='<?= site_url('notifikasiuser') ?>'">
                     <i class="fa-regular fa-bell"></i>
                     <?php if ($notif_unread > 0): ?>

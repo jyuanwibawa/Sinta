@@ -42,6 +42,13 @@
       <div class="user-pill">
         <div class="user-avatar">T</div>
         <div class="user-name">Tata Usaha</div>
+
+        <!-- TAMBAHAN LOGOUT (tanpa ubah struktur) -->
+        <a href="<?= site_url('DashboardTu/logout'); ?>"
+           style="margin-left:12px;font-size:12px;font-weight:700;color:#ef4444;text-decoration:none;"
+           onclick="return confirm('Yakin ingin logout?')">
+          Logout
+        </a>
       </div>
     </header>
 
@@ -133,13 +140,30 @@
                     class="btn btn-preview open-modal"
                     data-id="<?= $row->id_pengerjaan ?>"
                     data-nama="<?= $row->nama_ob ?>"
-                    data-lokasi="<?= $row->nama_ruangan ?>">
+                    data-lokasi="<?= $row->nama_ruangan ?>"
+                    data-eval-count="<?= (int)($row->eval_count ?? 0) ?>"
+                    data-point-awal="<?= (int)($row->point_awal ?? 100) ?>"
+                    data-point-minus="<?= (int)($row->point_minus_total ?? 0) ?>"
+                    <!-- ===================== -->
+                    <!-- TAMBAHAN REVISI: point akhir dari DB -->
+                    <!-- kalau point_akhir masih null, fallback hitung dari eval_count -->
+                    data-point-akhir="<?= ($row->point_akhir !== null && $row->point_akhir !== '' ? (int)$row->point_akhir : max(0, 100 - ((int)($row->eval_count ?? 0) * 10))) ?>">
+                    <!-- ===================== -->
                     Evaluasi
                   </button>
                 <?php else: ?>
                   <div style="margin-top:6px;font-size:12px;color:#374151">
                     Catatan: <?= $row->verifikasi_catatan ?>
                   </div>
+
+                  <!-- ===================== -->
+                  <!-- REVISI: cek null/kosong supaya tampil konsisten -->
+                  <?php if ($row->point_akhir !== null && $row->point_akhir !== ''): ?>
+                    <div style="margin-top:6px;font-size:12px;color:#6b7280">
+                      Poin Akhir: <b><?= (int)$row->point_akhir ?></b>
+                    </div>
+                  <?php endif; ?>
+                  <!-- ===================== -->
                 <?php endif; ?>
               </div>
             <?php endforeach; ?>
@@ -302,8 +326,8 @@
                     <td style="padding:10px 6px;border-bottom:1px solid #e5e7eb;"><?= (int)$ob->total_tugas ?></td>
                     <td style="padding:10px 6px;border-bottom:1px solid #e5e7eb;"><?= (int)$ob->selesai ?></td>
                     <td style="padding:10px 6px;border-bottom:1px solid #e5e7eb;"><?= (int)$kom ?></td>
-                    <td style="padding:10px 6px;border-bottom:1px solid #e5e7eb;"><?= $kb ? number_format($kb,1) : '-' ?>/10</td>
-                    <td style="padding:10px 6px;border-bottom:1px solid #e5e7eb;"><?= $kr ? number_format($kr,1) : '-' ?>/10</td>
+                    <td style="padding:10px 6px;border-bottom:1px solid #e5e7eb;"><?= number_format((float)($kb ?? 0), 1) ?>/10</td>
+                    <td style="padding:10px 6px;border-bottom:1px solid #e5e7eb;"><?= number_format((float)($kr ?? 0), 1) ?>/10</td>
                     <td style="padding:10px 6px;border-bottom:1px solid #e5e7eb;">
                       <span style="display:inline-block;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700;background:<?= $bg ?>;">
                         <?= $label ?>
@@ -404,8 +428,15 @@
             <div>
               <div id="modal-nama" style="font-size:14px;font-weight:600">OB:</div>
               <div id="modal-lokasi" style="font-size:12px;color:#6b7280;margin-top:2px">Area:</div>
-              <div style="margin-top:8px;font-size:32px;font-weight:700">100</div>
-              <div style="font-size:12px">Total Poin • Setiap catatan mengurangi 10 poin</div>
+
+              <div id="modal-point" style="margin-top:8px;font-size:32px;font-weight:700">100</div>
+              <div id="modal-point-desc" style="font-size:12px">
+                Total Poin • Setiap evaluasi mengurangi 10 poin • Maks 10 evaluasi
+              </div>
+
+              <div style="margin-top:6px;font-size:12px;color:#6b7280;">
+                Evaluasi: <b id="modal-eval-count">0</b> / 10
+              </div>
             </div>
           </div>
 
@@ -413,19 +444,33 @@
             <form id="form-evaluasi" action="<?= site_url('DashboardTu/verifikasi') ?>" method="post">
               <input type="hidden" name="id_pengerjaan" id="modal-id">
 
+              <input type="hidden" name="eval_count" id="modal-eval-count-input" value="0">
+              <input type="hidden" name="point_akhir" id="modal-point-input" value="100">
+
               <label style="font-size:13px;font-weight:600">Tambah Catatan Evaluasi</label>
 
               <textarea
                 name="catatan_tu"
+                id="modal-catatan"
                 placeholder="Tulis catatan evaluasi..."
                 required></textarea>
 
+              <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+                <button type="button" class="btn btn-preview" id="btnTambahEvaluasi">
+                  Tambah Evaluasi (-10)
+                </button>
+
+                <button type="button" class="btn btn-cancel" id="btnResetEvaluasi">
+                  Reset Evaluasi
+                </button>
+              </div>
+
               <div class="modal-footer">
-                <button type="submit" name="status_verifikasi" value="disetujui" class="btn btn-approve">
+                <button type="submit" name="status_verifikasi" value="disetujui" class="btn btn-approve" id="btnSetujui">
                   Setujui (100 poin)
                 </button>
 
-                <button type="submit" name="status_verifikasi" value="perlu_perbaikan" class="btn btn-needfix">
+                <button type="submit" name="status_verifikasi" value="perlu_perbaikan" class="btn btn-needfix" id="btnPerluPerbaikan">
                   Perlu Perbaikan (100 poin)
                 </button>
 
@@ -468,15 +513,12 @@
           });
         });
 
-        // default ikut hash
         showSection(getPageFromHash());
 
-        // kalau hash berubah (back/forward)
         window.addEventListener('hashchange', function(){
           showSection(getPageFromHash());
         });
 
-        // Tombol cetak rekap
         function getRangeOrAlert() {
           const startEl = document.getElementById('rekap_start');
           const endEl   = document.getElementById('rekap_end');
@@ -508,6 +550,208 @@
           const r = getRangeOrAlert(); if (!r) return;
           window.open("<?= site_url('CetakLaporanRekap/print'); ?>?start="+r.start+"&end="+r.end, "_blank");
         });
+
+        // ====== MODAL EVALUASI & AJAX ======
+        const modal = document.getElementById('modal-evaluasi');
+        const form  = document.getElementById('form-evaluasi');
+
+        const elNama   = document.getElementById('modal-nama');
+        const elLokasi = document.getElementById('modal-lokasi');
+        const elId     = document.getElementById('modal-id');
+
+        const elPoint     = document.getElementById('modal-point');
+        const elEvalCount = document.getElementById('modal-eval-count');
+        const elCatatan   = document.getElementById('modal-catatan');
+
+        const btnSetujui  = document.getElementById('btnSetujui');
+        const btnPerbaiki = document.getElementById('btnPerluPerbaikan');
+
+        const btnTambahEvaluasi = document.getElementById('btnTambahEvaluasi');
+        const btnResetEvaluasi  = document.getElementById('btnResetEvaluasi');
+
+        const POTONG_PER_EVAL = 10;
+        const MAX_EVAL = 10;
+
+        let __evalCount = 0;
+        let __pointAkhir = 100;
+
+        function syncButtonTambahEvaluasi() {
+          if (!btnTambahEvaluasi) return;
+
+          if (__evalCount >= MAX_EVAL) {
+            btnTambahEvaluasi.disabled = true;
+            btnTambahEvaluasi.innerText = 'Evaluasi Maksimal 10x';
+          } else {
+            btnTambahEvaluasi.disabled = false;
+            btnTambahEvaluasi.innerText = 'Tambah Evaluasi (-' + POTONG_PER_EVAL + ')';
+          }
+        }
+
+        function setUiEvaluasi() {
+          if (elPoint) elPoint.innerText = String(__pointAkhir);
+          if (elEvalCount) elEvalCount.innerText = String(__evalCount);
+
+          if (btnSetujui) btnSetujui.innerText = 'Setujui (' + __pointAkhir + ' poin)';
+          if (btnPerbaiki) btnPerbaiki.innerText = 'Perlu Perbaikan (' + __pointAkhir + ' poin)';
+
+          syncButtonTambahEvaluasi();
+        }
+
+        function openModal(btn) {
+          if (!modal) return;
+
+          const id = btn.getAttribute('data-id');
+          const nama = btn.getAttribute('data-nama') || '';
+          const lokasi = btn.getAttribute('data-lokasi') || '';
+
+          const evalCount = parseInt(btn.getAttribute('data-eval-count') || '0', 10);
+
+          const pointAkhirAttr = btn.getAttribute('data-point-akhir');
+          let pointAkhirDb = NaN;
+
+          if (pointAkhirAttr !== null && pointAkhirAttr !== '') {
+            pointAkhirDb = parseInt(pointAkhirAttr, 10);
+          }
+
+          if (isNaN(pointAkhirDb)) {
+            const pointAwal = parseInt(btn.getAttribute('data-point-awal') || '100', 10);
+            const pointMinus= parseInt(btn.getAttribute('data-point-minus') || '0', 10);
+            pointAkhirDb = Math.max(0, pointAwal - pointMinus);
+          }
+
+          __evalCount = isNaN(evalCount) ? 0 : evalCount;
+          __pointAkhir = isNaN(pointAkhirDb) ? 100 : pointAkhirDb;
+
+          if (elId) elId.value = id;
+          if (elNama) elNama.innerText = 'OB: ' + nama;
+          if (elLokasi) elLokasi.innerText = 'Area: ' + lokasi;
+
+          setUiEvaluasi();
+          modal.style.display = '';
+        }
+
+        function closeModal() {
+          if (!modal) return;
+          modal.style.display = 'none';
+        }
+
+        document.querySelectorAll('.open-modal').forEach(btn => {
+          btn.addEventListener('click', function(){
+            openModal(this);
+          });
+        });
+
+        document.querySelectorAll('[data-close-modal]').forEach(btn => {
+          btn.addEventListener('click', function(){
+            closeModal();
+          });
+        });
+
+        if (btnTambahEvaluasi) {
+          btnTambahEvaluasi.addEventListener('click', function () {
+
+            if (__evalCount >= MAX_EVAL) {
+              alert('Evaluasi sudah mencapai maksimal 10 kali.');
+              syncButtonTambahEvaluasi();
+              return;
+            }
+
+            const idP = elId ? elId.value : '';
+            if (!idP) { alert('ID pengerjaan tidak ditemukan'); return; }
+
+            const cat = elCatatan ? elCatatan.value : '';
+
+            const fd = new FormData();
+            fd.append('id_pengerjaan', idP);
+            fd.append('catatan_tu', cat);
+
+            fetch("<?= site_url('DashboardTu/tambah_evaluasi'); ?>", {
+              method: 'POST',
+              body: fd,
+              headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(r => r.json())
+            .then(res => {
+              if (!res || res.status !== 'success') {
+                alert((res && res.message) ? res.message : 'Gagal tambah evaluasi');
+                return;
+              }
+
+              __evalCount = parseInt(res.eval_count || '0', 10);
+              __pointAkhir = parseInt(res.point_akhir || '100', 10);
+
+              setUiEvaluasi();
+
+              if (__evalCount >= MAX_EVAL) {
+                alert('Evaluasi sudah maksimal 10x. Poin akhir sekarang: ' + __pointAkhir);
+              }
+            })
+            .catch(err => {
+              console.error(err);
+              alert('Terjadi kesalahan saat tambah evaluasi');
+            });
+          });
+        }
+
+        if (btnResetEvaluasi) {
+          btnResetEvaluasi.addEventListener('click', function(){
+            __evalCount = 0;
+            __pointAkhir = 100;
+            setUiEvaluasi();
+          });
+        }
+
+        if (form) {
+          form.addEventListener('submit', function(e){
+            e.preventDefault();
+
+            const actionUrl = form.getAttribute('action');
+            const formData = new FormData(form);
+
+            const active = document.activeElement;
+            if (active && active.name === 'status_verifikasi') {
+              formData.set('status_verifikasi', active.value);
+            }
+
+            fetch(actionUrl, {
+              method: 'POST',
+              body: formData,
+              headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(r => r.json())
+            .then(res => {
+
+              if (!res || res.status !== 'success') {
+                alert((res && res.message) ? res.message : 'Gagal memproses verifikasi.');
+                return;
+              }
+
+              let msg = "Berhasil!\n";
+              if (typeof res.eval_count !== 'undefined') {
+                msg += "Evaluasi: " + res.eval_count + "/" + (res.max_eval || MAX_EVAL) + "\n";
+              }
+              if (typeof res.point_minus_total !== 'undefined') {
+                msg += "Potongan total: -" + res.point_minus_total + "\n";
+              }
+
+              if (res.point_akhir !== null && typeof res.point_akhir !== 'undefined') {
+                msg += "Poin akhir: " + res.point_akhir + "\n";
+              } else if (typeof res.point_sementara !== 'undefined') {
+                msg += "Poin sekarang: " + res.point_sementara + "\n";
+              }
+
+              alert(msg);
+
+              closeModal();
+              window.location.href = window.location.pathname + window.location.search + "#verifikasi";
+              window.location.reload();
+            })
+            .catch(err => {
+              console.error(err);
+              alert('Terjadi kesalahan saat mengirim evaluasi.');
+            });
+          });
+        }
 
       });
       </script>

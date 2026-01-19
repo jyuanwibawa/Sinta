@@ -9,24 +9,22 @@ class Model_user extends CI_Model
     }
 
     private $table = "user";
-
-    //=== function yang digunakan ===
     function cek($email, $password)
     {
-        // $this->db->where("email", $email);
-        // $this->db->where("u_paswd", $password);
-        // return $this->db->get("user");
-        $sql="SELECT u.*,
+
+        $this->db->select('u.*,
                     asi.nama_satker,
                     asi.logo,
-                    aj.nama_jabatan
-                FROM user u 
-                LEFT JOIN adref_satker_instansi asi ON asi.satker_id=u.satker_id
-                LEFT JOIN adref_jabatan aj ON aj.jabatan_id=u.jabatan_id
-                WHERE u.email='".$email."' AND u.u_paswd='".$password."';";
-        return $this->db->query($sql);
+                    aj.nama_jabatan');
+        $this->db->from('user u');
+        $this->db->join('adref_satker_instansi asi', 'asi.satker_id = u.satker_id', 'left');
+        $this->db->join('adref_jabatan aj', 'aj.jabatan_id = u.jabatan_id', 'left');
+        $this->db->where('u.email', $email);
+        $this->db->where('u.u_paswd', $password);
+        $this->db->limit(1);
+
+        return $this->db->get();
     }
-    //=== end of function yang digunakan ===
 
     function semua()
     {
@@ -55,6 +53,8 @@ class Model_user extends CI_Model
         $email  =    $this->input->post('email');
         $no_hp  =    $this->input->post('telepon');
         $up_data        = $this->upload->data();
+
+
         $this->db->query("INSERT INTO user (nama,images,email,no_hp,file_identitas,waktu_daftar) VALUES ( '$nama','user.jpg','$email','$no_hp','" . mysql_real_escape_string($up_data['file_name']) . "',now())");
     }
 
@@ -77,9 +77,11 @@ class Model_user extends CI_Model
 
     function getLoginData($usr, $psw)
     {
+        
         $u = mysql_real_escape_string($usr);
         $p = md5(mysql_real_escape_string($psw));
-        $q_cek_login = $this->db->get_where('user', array('email' => $u, 'password' => $p));
+        $q_cek_login = $this->db->get_where('user', array('email' => $u, 'u_paswd' => $p));
+
         if (count($q_cek_login->result()) > 0) {
             foreach ($q_cek_login->result() as $qck) {
                 foreach ($q_cek_login->result() as $qad) {
@@ -103,7 +105,6 @@ class Model_user extends CI_Model
 
     function do_waktu_daftar($id)
     {
-
         return $this->db->query("UPDATE user SET waktu_daftar=now() WHERE user_id = '$id'");
     }
 
